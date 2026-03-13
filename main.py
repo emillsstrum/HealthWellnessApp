@@ -17,7 +17,12 @@ mealTracker = {} # each value is the calorie count for the meal
 workoutTracker = {} # each entry is the calorie count burned from the workout
 
 def add_meal():
-    pass
+    date = input("Enter date of meal(MM/DD/YYYY): ")
+    meal_items = input("Enter meal details: ")
+    calorie_count = int(input("Enter calories: "))
+
+    # add to dictionary
+    mealTracker[date] = {"meal_items":meal_items, "calorie_count":calorie_count}
 
 def add_workout():
     pass
@@ -40,6 +45,8 @@ def main():
         while choice < 1 or choice > 4:
             print("Invalid operation. Please choose a number from 1 to 4.")
             choice = int(input("Choose operation: "))
+
+        print() #blank space
 
         # call other functions based on input - You need to do this
         if choice == 1:

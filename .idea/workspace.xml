@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Initial project setup.">
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation.">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773428814460</updated>
-      <workItem from="1773428815530" duration="2411000" />
+      <workItem from="1773428815530" duration="3315000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -84,7 +84,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773429529936</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation.">
+      <option name="closed" value="true" />
+      <created>1773431447887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773431447887</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,9 +100,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project setup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project setup." />
+    <MESSAGE value="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1773430968756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1773432060434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
