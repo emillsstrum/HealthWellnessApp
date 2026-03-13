@@ -17,6 +17,7 @@ mealTracker = {} # each value is the calorie count for the meal
 workoutTracker = {} # each entry is the calorie count burned from the workout
 
 def add_meal():
+    print("## Add Meal Entry ##")
     date = input("Enter date of meal(MM/DD/YYYY): ")
     meal_details = input("Enter meal details: ")
     calories_consumed = int(input("Enter calories: "))
@@ -25,6 +26,7 @@ def add_meal():
     mealTracker[date] = {"meal_details":meal_details, "calorie_count":calories_consumed}
 
 def add_workout():
+    print("## Add Workout Entry##")
     date = input("Enter date of workout(MM/DD/YYYY): ")
     workout_details = input("Enter workout details: ")
     calories_burned = int(input("Enter calories burned: "))
@@ -33,7 +35,33 @@ def add_workout():
     workoutTracker[date] = {"workout_details":workout_details, "calories_burned":calories_burned}
 
 def search_date():
-    pass
+    print("## Search for Entry ##")
+    date = input("Enter date to search(MM/DD/YYYY): ")
+    print() # blank space
+
+    calories_consumed = 0
+    calories_burned = 0
+    if date in mealTracker:
+        print("Meals:")
+        print("Meal Items:", mealTracker[date]["meal_details"])
+        print("Meal Calories:", mealTracker[date]["calorie_count"])
+        calories_consumed = mealTracker[date]["calorie_count"]
+    else:
+        print("Meal: None")
+
+    if date in workoutTracker:
+        print("Workout:")
+        print("Details:", workoutTracker[date]["workout_details"])
+        print("Calories Burned:", workoutTracker[date]["calories_burned"])
+        calories_burned = workoutTracker[date]["calories_burned"]
+    else:
+        print("Workout: None")
+    pos = ""
+    calorie_difference = calories_consumed - calories_burned
+    if calorie_difference > 0:
+        pos = "+"
+    print() # blank space
+    print("Calorie Difference:", pos + str(calorie_difference))
 
 def main():
     choice = 0
@@ -51,7 +79,7 @@ def main():
             print("Invalid operation. Please choose a number from 1 to 4.")
             choice = int(input("Choose operation: "))
 
-        print() #blank space
+        print() # blank space
 
         # call other functions based on input - You need to do this
         if choice == 1:

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation.">
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created add_workout function to add workout to workoutTracker dictionary. Updated some variable names in add_meal function.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773428814460</updated>
-      <workItem from="1773428815530" duration="3315000" />
+      <workItem from="1773428815530" duration="5867000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -92,7 +93,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773431447887</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created add_meal function to add meal to mealTracker dictionary.">
+      <option name="closed" value="true" />
+      <created>1773432188350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773432188350</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created add_workout function to add workout to workoutTracker dictionary. Updated some variable names in add_meal function.">
+      <option name="closed" value="true" />
+      <created>1773432597564</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773432597564</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,9 +118,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project setup." />
     <MESSAGE value="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation." />
+    <MESSAGE value="Created add_meal function to add meal to mealTracker dictionary." />
+    <MESSAGE value="Created add_workout function to add workout to workoutTracker dictionary. Updated some variable names in add_meal function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created add_workout function to add workout to workoutTracker dictionary. Updated some variable names in add_meal function." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1773432060434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1773434651237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
