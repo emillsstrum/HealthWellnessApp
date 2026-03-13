@@ -16,32 +16,42 @@
 mealTracker = {} # each value is the calorie count for the meal
 workoutTracker = {} # each entry is the calorie count burned from the workout
 
-# TODO: Create functions to add meal, add workout and search via date in the dictionary.
+def add_meal():
+    pass
+
+def add_workout():
+    pass
+
+def search_date():
+    pass
 
 def main():
-    # TODO: You need to make this system file loop for the menu until they exit.
-    # print menu - We will be adding to these as we go throughout the course
-    print("### Health and Wellness App ###")
-    print("1. Add Meal")
-    print("2. Add Workout")
-    print("3. Search Date")
-    print("4. Exit")
+    choice = 0
+    while choice != 4:
+        # print menu - We will be adding to these as we go throughout the course
+        print("### Health and Wellness App ###")
+        print("1. Add Meal")
+        print("2. Add Workout")
+        print("3. Search Date")
+        print("4. Exit")
 
-    # get input
-    choice = int(input("Choose operation: "))
+        # get input
+        choice = int(input("Choose operation: "))
+        while choice < 1 or choice > 4:
+            print("Invalid operation. Please choose a number from 1 to 4.")
+            choice = int(input("Choose operation: "))
 
-    # TODO: You need to validate the choice operation input is between 1-4 using a while loop NOT just having else on the if/elif below.
+        # call other functions based on input - You need to do this
+        if choice == 1:
+            add_meal()
+        elif choice == 2:
+            add_workout()
+        elif choice == 3:
+            search_date()
+        elif choice == 4:
+            print("System Exiting...")
 
-    # call other functions based on input - You need to do this
-    # TODO: You need to create other functions outside of main and call them here for each operation.
-    if choice == 1:
-        pass
-    elif choice == 2:
-        pass
-    elif choice == 3:
-        pass
-    elif choice == 4:
-        print("System Exitting...")
+        print() # blank space
 
 
 if __name__ == "__main__":
