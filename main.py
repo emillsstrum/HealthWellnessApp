@@ -18,14 +18,19 @@ workoutTracker = {} # each entry is the calorie count burned from the workout
 
 def add_meal():
     date = input("Enter date of meal(MM/DD/YYYY): ")
-    meal_items = input("Enter meal details: ")
-    calorie_count = int(input("Enter calories: "))
+    meal_details = input("Enter meal details: ")
+    calories_consumed = int(input("Enter calories: "))
 
     # add to dictionary
-    mealTracker[date] = {"meal_items":meal_items, "calorie_count":calorie_count}
+    mealTracker[date] = {"meal_details":meal_details, "calorie_count":calories_consumed}
 
 def add_workout():
-    pass
+    date = input("Enter date of workout(MM/DD/YYYY): ")
+    workout_details = input("Enter workout details: ")
+    calories_burned = int(input("Enter calories burned: "))
+
+    # add to dictionary
+    workoutTracker[date] = {"workout_details":workout_details, "calories_burned":calories_burned}
 
 def search_date():
     pass
