@@ -15,30 +15,33 @@
 
 # global dictionaries for meal and workout
 # keys are date - in string format - for now
+
+from utils.input_util import *
+
 mealTracker = {} # each value is the calorie count for the meal
 workoutTracker = {} # each entry is the calorie count burned from the workout
 
 def add_meal():
     print("## Add Meal Entry ##")
-    date = input("Enter date of meal(MM/DD/YYYY): ")
+    date = prompt_date("Enter date of meal(MM/DD/YYYY): ")
     meal_details = input("Enter meal details: ")
-    calories_consumed = int(input("Enter calories: "))
+    calories_consumed = prompt_int("Enter calories: ")
 
     # add to dictionary
     mealTracker[date] = {"meal_details":meal_details, "calorie_count":calories_consumed}
 
 def add_workout():
     print("## Add Workout Entry##")
-    date = input("Enter date of workout(MM/DD/YYYY): ")
+    date = prompt_date("Enter date of workout(MM/DD/YYYY): ")
     workout_details = input("Enter workout details: ")
-    calories_burned = int(input("Enter calories burned: "))
+    calories_burned = prompt_int("Enter calories burned: ")
 
     # add to dictionary
     workoutTracker[date] = {"workout_details":workout_details, "calories_burned":calories_burned}
 
 def search_date():
     print("## Search for Entry ##")
-    date = input("Enter date to search(MM/DD/YYYY): ")
+    date = prompt_date("Enter date to search(MM/DD/YYYY): ")
     print() # blank space
 
     calories_consumed = 0
@@ -76,7 +79,7 @@ def main():
         print("4. Exit")
 
         # get input
-        choice = int(input("Choose operation: "))
+        choice = prompt_int_range("Choose operation: ", 1, 4)
         while choice < 1 or choice > 4:
             print("Invalid operation. Please choose a number from 1 to 4.")
             choice = int(input("Choose operation: "))
@@ -95,6 +98,35 @@ def main():
 
         print() # blank space
 
+# prompt functions
+def prompt_int(prompt):
+    # convert string value to int
+    # prompt user until valid input entered
+    while True:
+        str_value = input(prompt)
+        value = get_int(str_value)
+        if value:
+            return value
+        print("Error, invalid input.")
+
+def prompt_int_range(prompt, low, high):
+    # convert string value to int
+    # prompt user until valid input within range entered
+    while True:
+        str_value = input(prompt)
+        value = get_int_range(str_value, low, high)
+        if value:
+            return value
+        print("Error, input is out of range.")
+
+def prompt_date(prompt):
+    # prompt user until valid date in MM/DD/YYYY format entered
+    while True:
+        date_str = input(prompt)
+        date = get_date(date_str)
+        if date:
+            return date
+        print("Error, invalid date input.")
 
 if __name__ == "__main__":
     main()
