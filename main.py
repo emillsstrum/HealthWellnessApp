@@ -11,6 +11,8 @@
 
 # This is the UI for the Health and Wellness system
 
+# Resources used: lectures, reading, W3Schools
+
 # global dictionaries for meal and workout
 # keys are date - in string format - for now
 mealTracker = {} # each value is the calorie count for the meal
