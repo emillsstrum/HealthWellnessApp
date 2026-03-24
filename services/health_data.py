@@ -30,12 +30,15 @@ def get_workout(date):
     return None
 
 def main():
+    # test functions
     date = input("enter date: ")
     workout_details = input("enter workout details: ")
     calories_burned = input("enter calories burned: ")
     workout = {"workout_details":workout_details, "calorie_count":calories_burned}
     add_workout(date, workout)
-    print(workoutTracker)
+    search_date = input("enter date to search: ")
+    details = get_workout(search_date)
+    print(details)
 
 if __name__ == "__main__":
     main()

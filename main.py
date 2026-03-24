@@ -17,51 +17,66 @@
 # keys are date - in string format - for now
 
 from utils.input_util import *
-from services.health_data import *
+import services.health_data as db
 
 def add_meal():
+    # get date and meal data
     print("## Add Meal Entry ##")
-    date = prompt_date("Enter date of meal(MM/DD/YYYY): ")
-    meal_details = input("Enter meal details: ")
-    calories_consumed = prompt_int("Enter calories: ")
+    meal_date = prompt_date("Enter date of meal(MM/DD/YYYY): ")
+    items = input("Enter meal details: ")
+    calories = prompt_int("Enter calories: ")
 
-    # add to dictionary
-    mealTracker[date] = {"meal_details":meal_details, "calorie_count":calories_consumed}
+    # add input to dictionary if date does not already exist in dictionary
+    if db.add_meal(meal_date, {"items":items, "calories":calories}):
+        print("* Entry added.")
+    else:
+        print("Error, date entry already added, try modifying entry.")
 
 def add_workout():
+    # get date and workout data
     print("## Add Workout Entry##")
-    date = prompt_date("Enter date of workout(MM/DD/YYYY): ")
-    workout_details = input("Enter workout details: ")
-    calories_burned = prompt_int("Enter calories burned: ")
+    workout_date = prompt_date("Enter date of workout(MM/DD/YYYY): ")
+    details = input("Enter workout details: ")
+    calories = prompt_int("Enter calories burned: ")
 
-    # add to dictionary
-    workoutTracker[date] = {"workout_details":workout_details, "calories_burned":calories_burned}
+    # add input to dictionary if date does not already exist in dictionary
+    if db.add_workout(workout_date, {"details":details, "calories":calories}):
+        print("* Entry added.")
+    else:
+        print("Error, date entry already added, try modifying entry.")
 
-def search_date():
+def search_entry():
+    # get date input and output meal & workout data
     print("## Search for Entry ##")
-    date = prompt_date("Enter date to search(MM/DD/YYYY): ")
+    search_date = prompt_date("Enter date to search(MM/DD/YYYY): ")
     print() # blank space
 
+    meal = db.get_meal(search_date)
+    workout = db.get_workout(search_date)
     calories_consumed = 0
     calories_burned = 0
-    if date in mealTracker:
+    if meal:
+        # if dictionary entry exists, output the data
+        calories_consumed = meal["calories"]
         print("Meals:")
-        print("Meal Items:", mealTracker[date]["meal_details"])
-        print("Meal Calories:", mealTracker[date]["calorie_count"])
-        calories_consumed = mealTracker[date]["calorie_count"]
+        print("Meal Items:", meal["items"])
+        print("Meal Calories:", calories_consumed)
     else:
         print("Meal: None")
 
-    if date in workoutTracker:
+    if workout:
+        # if dictionary entry exists, output the data
+        calories_burned = workout["calories"]
         print("Workout:")
-        print("Details:", workoutTracker[date]["workout_details"])
-        print("Calories Burned:", workoutTracker[date]["calories_burned"])
-        calories_burned = workoutTracker[date]["calories_burned"]
+        print("Details:", workout["details"])
+        print("Calories Burned:", calories_burned)
     else:
         print("Workout: None")
     pos = ""
+    # calculate calorie difference
     calorie_difference = calories_consumed - calories_burned
     if calorie_difference > 0:
+        # if calorie difference > 0, add "+" to output
         pos = "+"
     print() # blank space
     print("Calorie Difference:", pos + str(calorie_difference))
@@ -78,9 +93,6 @@ def main():
 
         # get input
         choice = prompt_int_range("Choose operation: ", 1, 4)
-        while choice < 1 or choice > 4:
-            print("Invalid operation. Please choose a number from 1 to 4.")
-            choice = int(input("Choose operation: "))
 
         print() # blank space
 
@@ -90,7 +102,7 @@ def main():
         elif choice == 2:
             add_workout()
         elif choice == 3:
-            search_date()
+            search_entry()
         elif choice == 4:
             print("System Exiting...")
 
@@ -105,7 +117,7 @@ def prompt_int(prompt):
         value = get_int(str_value)
         if value:
             return value
-        print("Error, invalid input.")
+        print("Error, enter a valid number.")
 
 def prompt_int_range(prompt, low, high):
     # convert string value to int
@@ -115,7 +127,7 @@ def prompt_int_range(prompt, low, high):
         value = get_int_range(str_value, low, high)
         if value:
             return value
-        print("Error, input is out of range.")
+        print("Error, enter a number within the range.")
 
 def prompt_date(prompt):
     # prompt user until valid date in MM/DD/YYYY format entered
@@ -124,7 +136,7 @@ def prompt_date(prompt):
         date = get_date(date_str)
         if date:
             return date
-        print("Error, invalid date input.")
+        print("Error, enter a valid date.")
 
 if __name__ == "__main__":
     main()
