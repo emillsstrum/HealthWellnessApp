@@ -17,9 +17,7 @@
 # keys are date - in string format - for now
 
 from utils.input_util import *
-
-mealTracker = {} # each value is the calorie count for the meal
-workoutTracker = {} # each entry is the calorie count burned from the workout
+from services.health_data import *
 
 def add_meal():
     print("## Add Meal Entry ##")
