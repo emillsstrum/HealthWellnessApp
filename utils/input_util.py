@@ -38,24 +38,3 @@ def get_date(str_date : str) -> date | None:
                 return None
     else:
         return None
-
-def main():
-    # test get_int()
-    print("* test get_int")
-    print(get_int("6"))
-    print(get_int("six"))
-    # test get_int_range()
-    print()
-    print("* test get_int_range")
-    print(get_int_range("6", 0, 10))
-    print(get_int_range("11", 0, 10))
-    print(get_int_range("-1", 0, 10))
-    # test get_date()
-    print()
-    print("* test get_date")
-    print(get_date("03/16/1995"))
-    print(get_date("16/03/1995"))
-    print(get_date("March 16, 1995"))
-
-if __name__ == "__main__":
-    main()

@@ -13,73 +13,60 @@
 
 # Resources used: lectures, reading, W3Schools
 
-# global dictionaries for meal and workout
-# keys are date - in string format - for now
-
 from utils.input_util import *
 import services.health_data as db
+from models.DateEntity import Day
+from models.CalorieEntities import Meal
+from models.CalorieEntities import Workout
+from datetime import date
 
 def add_meal():
-    # get date and meal data
     print("## Add Meal Entry ##")
+    # get date input
     meal_date = prompt_date("Enter date of meal(MM/DD/YYYY): ")
+    # if date doesn't exist in health_data dictionary, call add_day() to add it
+    if db.get_entry(meal_date) is None:
+        db.add_day(meal_date)
+    # get meal details and calorie amount input
     items = input("Enter meal details: ")
     calories = prompt_int("Enter calories: ")
-
-    # add input to dictionary if date does not already exist in dictionary
-    if db.add_meal(meal_date, {"items":items, "calories":calories}):
+    #create Meal object
+    meal = Meal(items, calories)
+    # call health_data.py add_meal() to adds Meal to Day object
+    if db.add_meal(meal_date, meal):
         print("* Entry added.")
-    else:
-        print("Error, date entry already added, try modifying entry.")
+    else: # if db.add_meal() returns false, print error message
+        print("* Error, entry not added. Try modifying entry.")
 
 def add_workout():
-    # get date and workout data
-    print("## Add Workout Entry##")
+    print("## Add Workout Entry ##")
+    # get date input
     workout_date = prompt_date("Enter date of workout(MM/DD/YYYY): ")
+    # if date doesn't exist in health_data dictionary, call add_day() to add it
+    if db.get_entry(workout_date) is None:
+        db.add_day(workout_date)
+    # get workout details and calorie amount
     details = input("Enter workout details: ")
     calories = prompt_int("Enter calories burned: ")
-
-    # add input to dictionary if date does not already exist in dictionary
-    if db.add_workout(workout_date, {"details":details, "calories":calories}):
+    # create Workout object
+    workout = Workout(details, calories)
+    # call health_data.py add_meal() to adds Meal to Day object
+    if db.add_workout(workout_date, workout):
         print("* Entry added.")
-    else:
-        print("Error, date entry already added, try modifying entry.")
+    else: # if db.add_workout() returns false, print error message
+        print("* Error, entry not added. Try modifying entry.")
 
 def search_entry():
-    # get date input and output meal & workout data
+    # get date input to search for
     print("## Search for Entry ##")
     search_date = prompt_date("Enter date to search(MM/DD/YYYY): ")
     print() # blank space
-
-    meal = db.get_meal(search_date)
-    workout = db.get_workout(search_date)
-    calories_consumed = 0
-    calories_burned = 0
-    if meal:
-        # if dictionary entry exists, output the data
-        calories_consumed = meal["calories"]
-        print("Meals:")
-        print("Meal Items:", meal["items"])
-        print("Meal Calories:", calories_consumed)
+    # if Day object exists in dictionary, print it
+    entry = db.get_entry(search_date)
+    if entry is not None:
+        print(entry)
     else:
-        print("Meal: None")
-
-    if workout:
-        # if dictionary entry exists, output the data
-        calories_burned = workout["calories"]
-        print("Workout:")
-        print("Details:", workout["details"])
-        print("Calories Burned:", calories_burned)
-    else:
-        print("Workout: None")
-    pos = ""
-    # calculate calorie difference
-    calorie_difference = calories_consumed - calories_burned
-    if calorie_difference > 0:
-        # if calorie difference > 0, add "+" to output
-        pos = "+"
-    print() # blank space
-    print("Calorie Difference:", pos + str(calorie_difference))
+        print("* Error, entry not found")
 
 def main():
     choice = 0

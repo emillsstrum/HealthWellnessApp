@@ -54,7 +54,7 @@ class Day:
     def net_calories(self):
         # subtract workout calories from meal calories, return net calories
         net_calories = self.meal_calories() - self.workout_calories()
-        if net_calories < 0: # if net_calories < 0, print "+" before value
+        if net_calories > 0: # if net_calories < 0, print "+" before value
             return f"+{net_calories}"
         else:
             return str(net_calories)
@@ -65,16 +65,18 @@ class Day:
     def __str__(self):
         # print out date, meals, and workouts
         return f"Date: {self.day}\nMeals: {self.meals_to_string()}\nWorkouts: {self.workouts_to_string()}\n"\
-        f"Calorie Balance: {self.net_calories()}"
+        f"\nNet Calories: {self.net_calories()}"
 
     def meals_to_string(self):
         # create string of meals
         string = ""
         for meal in self.meals:
             string += "\n\t" + str(meal)
+        return string
 
     def workouts_to_string(self):
         # create string of workouts
         string = ""
         for workout in self.workouts:
             string += "\n\t" + str(workout)
+        return string

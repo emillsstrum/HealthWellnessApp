@@ -19,7 +19,7 @@ class Meal:
             self.__calories = value
 
     def __str__(self):
-        return f"Meal/Item: {self.items}, Calories: {self.calories}"
+        return f"Meal/Items: {self.items}, Calories Consumed: {self.calories}"
 
 class Workout:
     def __init__(self, details, calories): # create Workout object
