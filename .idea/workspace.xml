@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Added functions to database module that return meal and workout data.">
-      <change afterPath="$PROJECT_DIR$/models/CalorieEntities.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/DateEntity.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created classes for Meal, Workout, and Day. Created methods for each class.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DateEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/DateEntity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/health_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/health_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +92,8 @@
       <updated>1773428814460</updated>
       <workItem from="1773428815530" duration="6152000" />
       <workItem from="1774302702665" duration="12613000" />
+      <workItem from="1774976109349" duration="1734000" />
+      <workItem from="1774981144594" duration="4024000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -166,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774313746180</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Created classes for Meal, Workout, and Day. Created methods for each class.">
+      <option name="closed" value="true" />
+      <created>1774914970408</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1774914970408</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +191,8 @@
     <MESSAGE value="Input validation implemented in main.py, helper functions added to prompt user until valid input is entered." />
     <MESSAGE value="Moved dictionaries to database module. Added functions to database module that add meal and workout entries to dictionaries." />
     <MESSAGE value="Added functions to database module that return meal and workout data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functions to database module that return meal and workout data." />
+    <MESSAGE value="Created classes for Meal, Workout, and Day. Created methods for each class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created classes for Meal, Workout, and Day. Created methods for each class." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />

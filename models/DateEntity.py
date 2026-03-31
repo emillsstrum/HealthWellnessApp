@@ -30,11 +30,11 @@ class Day:
         self.__workouts = value
 
     def add_meal(self, meal : Meal):
-        # add Meal object to meals
+        # add Meal object to meals list
         self.__meals.append(meal)
 
     def add_workout(self, workout : Workout):
-        # add Workout object to workouts
+        # add Workout object to workouts list
         self.__workouts.append(workout)
 
     def meal_calories(self):
