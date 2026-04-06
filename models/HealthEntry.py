@@ -22,7 +22,7 @@ class HealthEntry: # base class for Meal / Workout classes
 
     # set up string method
     def __str__(self):
-        return f"Entry: {self._description}, calories: {self._calories}"
+        return f"Entry: {self._description}, Calories: {self._calories}"
 
 # test
 def main():

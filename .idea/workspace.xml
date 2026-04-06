@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created base class HealthEntry.">
-      <change afterPath="$PROJECT_DIR$/models/EntryType.py" afterDir="false" />
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created enumerations for types of meals and workouts.">
+      <change beforePath="$PROJECT_DIR$/models/CalorieEntities.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CalorieEntities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/HealthEntry.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/HealthEntry.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775504474878</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Created enumerations for types of meals and workouts.">
+      <option name="closed" value="true" />
+      <created>1775506000074</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1775506000074</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,7 +231,8 @@
     <MESSAGE value="Created classes for Meal, Workout, and Day. Created methods for each class." />
     <MESSAGE value="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day()." />
     <MESSAGE value="Created base class HealthEntry." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created base class HealthEntry." />
+    <MESSAGE value="Created enumerations for types of meals and workouts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created enumerations for types of meals and workouts." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
