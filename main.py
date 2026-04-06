@@ -8,7 +8,7 @@
 
     Make sure to merge branches and create new branches for each week's assignment.
 '''
-
+from models.EntryType import MealType, WorkoutType
 # This is the UI for the Health and Wellness system
 
 # Resources used: lectures, reading, W3Schools
@@ -27,11 +27,12 @@ def add_meal():
     # if date doesn't exist in health_data dictionary, call add_day() to add it
     if db.get_entry(meal_date) is None:
         db.add_day(meal_date)
-    # get meal details and calorie amount input
+    # get meal type, meal details, and calorie amount input
     items = input("Enter meal details: ")
     calories = prompt_int("Enter calories: ")
+    meal_type = get_meal_type()
     #create Meal object
-    meal = Meal(items, calories)
+    meal = Meal(items, calories, meal_type)
     # call health_data.py add_meal() to adds Meal to Day object
     if db.add_meal(meal_date, meal):
         print("* Entry added.")
@@ -45,11 +46,12 @@ def add_workout():
     # if date doesn't exist in health_data dictionary, call add_day() to add it
     if db.get_entry(workout_date) is None:
         db.add_day(workout_date)
-    # get workout details and calorie amount
+    # get workout type, workout details, and calorie amount
     details = input("Enter workout details: ")
     calories = prompt_int("Enter calories burned: ")
+    workout_type = get_workout_type()
     # create Workout object
-    workout = Workout(details, calories)
+    workout = Workout(details, calories, workout_type)
     # call health_data.py add_meal() to adds Meal to Day object
     if db.add_workout(workout_date, workout):
         print("* Entry added.")
@@ -95,7 +97,7 @@ def main():
 
         print() # blank space
 
-# prompt functions
+# helper functions
 def prompt_int(prompt):
     # convert string value to int
     # prompt user until valid input entered
@@ -124,6 +126,24 @@ def prompt_date(prompt):
         if date:
             return date
         print("Error, enter a valid date.")
+
+def get_meal_type():
+    # print list of meal types, get user input for meal type
+    print("Choose meal type: ")
+    for index, meal_type in enumerate(MealType, start=1): # print options
+        print(f"{index}. {meal_type}")
+
+    choice = prompt_int_range("Enter your choice (1-" + str(len(MealType)) + "): ", 1, len(MealType))
+    return list(MealType)[choice - 1] # return meal type chosen by user
+
+def get_workout_type():
+    # print list of meal types, get user input for workout type
+    print("Choose workout type: ")
+    for index, workout_type in enumerate(WorkoutType, start=1): # print options
+        print(f"{index}. {workout_type}")
+
+    choice = prompt_int_range("Enter your choice (1-" + str(len(WorkoutType)) + "): ", 1, len(WorkoutType))
+    return list(WorkoutType)[choice - 1] # return workout type chosen by user
 
 if __name__ == "__main__":
     main()

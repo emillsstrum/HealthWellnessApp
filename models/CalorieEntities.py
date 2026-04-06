@@ -16,7 +16,7 @@ class Meal(HealthEntry):
 
 
     def __str__(self): # override super class __str__ method
-        return f"Meal/Items: {self.description}, Calories Consumed: {self.calories}, Meal Type: {self.meal_type}"
+        return f"Meal: {self.description}, Calories Consumed: {self.calories}, Meal Type: {self.meal_type}"
 
 class Workout(HealthEntry):
     def __init__(self, description, calories, workout_type:WorkoutType): # create Workout object
