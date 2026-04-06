@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day().">
-      <change afterPath="$PROJECT_DIR$/models/HealthEntry.py" afterDir="false" />
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created base class HealthEntry.">
+      <change afterPath="$PROJECT_DIR$/models/EntryType.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +51,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.DateEntity.executor": "Debug",
+    "Python.EntryType.executor": "Run",
     "Python.HealthEntry.executor": "Run",
     "Python.health_data.executor": "Run",
     "Python.input_util.executor": "Run",
@@ -183,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774985528789</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Created base class HealthEntry.">
+      <option name="closed" value="true" />
+      <created>1775504474878</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1775504474878</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +221,8 @@
     <MESSAGE value="Added functions to database module that return meal and workout data." />
     <MESSAGE value="Created classes for Meal, Workout, and Day. Created methods for each class." />
     <MESSAGE value="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day()." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day()." />
+    <MESSAGE value="Created base class HealthEntry." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created base class HealthEntry." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -222,8 +232,10 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1774993588767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1774307107626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
