@@ -11,7 +11,7 @@
 from models.EntryType import MealType, WorkoutType
 # This is the UI for the Health and Wellness system
 
-# Resources used: lectures, reading, W3Schools
+# Resources used: lectures, reading (no Gen AI used)
 
 from utils.input_util import *
 import services.health_data as db
