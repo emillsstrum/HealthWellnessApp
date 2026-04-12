@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created enumerations for types of meals and workouts.">
-      <change beforePath="$PROJECT_DIR$/models/CalorieEntities.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CalorieEntities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/HealthEntry.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/HealthEntry.py" afterDir="false" />
-    </list>
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +198,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775506000074</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Modified Meal and Workout to be subclasses of HealthEntry. Added meal type property to Meal, and workout type property to Workout.">
+      <option name="closed" value="true" />
+      <created>1775509184907</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1775509184907</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout.">
+      <option name="closed" value="true" />
+      <created>1775511975747</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1775511975747</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +245,9 @@
     <MESSAGE value="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day()." />
     <MESSAGE value="Created base class HealthEntry." />
     <MESSAGE value="Created enumerations for types of meals and workouts." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created enumerations for types of meals and workouts." />
+    <MESSAGE value="Modified Meal and Workout to be subclasses of HealthEntry. Added meal type property to Meal, and workout type property to Workout." />
+    <MESSAGE value="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -244,8 +259,8 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1774993588767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1775511110712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1774307107626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
