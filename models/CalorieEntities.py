@@ -4,7 +4,7 @@ from models.EntryType import MealType, WorkoutType
 class Meal(HealthEntry):
     def __init__(self, description, calories, meal_type:MealType): # create Meal object
         super().__init__(description, calories)
-        self.__meal_type = meal_type
+        self.meal_type = meal_type
 
     # getter and setter for meal_type
     @property
@@ -12,7 +12,10 @@ class Meal(HealthEntry):
         return self.__meal_type
     @meal_type.setter
     def meal_type(self, value):
-        self.__meal_type = value
+        if isinstance(value, MealType): # check if value is Enum type
+            self.__meal_type = value
+        else: # if not, set as default (Snack)
+            self.__meal_type = MealType.SNACK
 
 
     def __str__(self): # override super class __str__ method
@@ -21,7 +24,7 @@ class Meal(HealthEntry):
 class Workout(HealthEntry):
     def __init__(self, description, calories, workout_type:WorkoutType): # create Workout object
         super().__init__(description, calories)
-        self.__workout_type = workout_type
+        self.workout_type = workout_type
 
     # getter and setter for workout_type
     @property
@@ -29,7 +32,10 @@ class Workout(HealthEntry):
         return self.__workout_type
     @workout_type.setter
     def workout_type(self, value):
-        self.__workout_type = value
+        if isinstance(value, WorkoutType): # check if value is Enum type
+            self.__workout_type = value
+        else: # if not, set as default (Other)
+            self.__workout_type = WorkoutType.OTHER
 
     def __str__(self): # override super class __str__ method
         return f"Workout: {self.description}, Calories Burned: {self.calories}, Workout Type: {self.workout_type}"

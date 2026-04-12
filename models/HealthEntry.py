@@ -19,6 +19,8 @@ class HealthEntry: # base class for Meal / Workout classes
     def calories(self, value):
         if value > 0:
             self._calories = value
+        else:
+            self._calories = 0
 
     # set up string method
     def __str__(self):
