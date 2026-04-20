@@ -8,11 +8,11 @@
 
     Make sure to merge branches and create new branches for each week's assignment.
 '''
-from models.EntryType import MealType, WorkoutType
 # This is the UI for the Health and Wellness system
 
-# Resources used: lectures, reading (no Gen AI used)
+# Resources used: lectures, reading, copilot AI to generate code for test data
 
+from models.EntryType import MealType, WorkoutType
 from utils.input_util import *
 import services.health_data as db
 from models.DateEntity import Day
@@ -70,18 +70,91 @@ def search_entry():
     else:
         print("* Error, entry not found")
 
-def main():
+def modify_meal():
+    print("## Modify Meal ##")
+    # prompt for date to look up Day
+    search_date = prompt_date("Enter date to modify(MM/DD/YYYY): ")
+    print()
+    current = db.get_entry(search_date)
+
+    # if get_entry returns None, date doesn't exist in collection, print message and exit
+    if not current:
+        print("No entry found for this date")
+        return
+
+    # if no meals listed for date, print message and exit
+    if len(current.meals) == 0:
+        print("No meals found for this date")
+        return
+
+    # print list of meals for searched date
+    print("# Meal List #")
+    for i in range(len(current.meals)):
+        print(f"{i+1}. {current.meals[i]}")
+    print(f"{len(current.meals)+1}. Exit Meal Modification")
+    # get input for which meal to modify
+    print()
+    choice = prompt_int_range(f"Meal to modify (or enter {len(current.meals)+1} to exit): ",
+                                   1, (len(current.meals)+1))
+    # exit if user chooses to exit meal modification
+    if choice == len(current.meals)+1:
+        return
+    # otherwise send meal choice to modify attribute function
+    meal_choice = current.meals[choice-1]
+    modify_meal_attribute(meal_choice)
+
+def modify_meal_attribute(current_meal):
+    # print meal data and
+    print()
+    print("# Current Meal #")
+    print(current_meal)
+
+    # print options for updating meal data
     choice = 0
     while choice != 4:
+        print()
+        print("1. Modify Item Description")
+        print("2. Modify Calories")
+        print("3. Modify Meal Type")
+        print("4. Exit Current Meal Modification")
+
+        # get input for what attribute to modify
+        mod_choice = prompt_int_range("Modify Attribute: ", 1, 4)
+
+        # modify based on user input
+        if mod_choice == 1:
+            new_details = input("Enter new item details: ")
+            current_meal.description = new_details
+        if mod_choice == 2:
+            new_calories = prompt_int("Enter new calories: ")
+            current_meal.calories = new_calories
+        if mod_choice == 3:
+            new_meal_type = get_meal_type()
+            current_meal.meal_type = new_meal_type
+        if mod_choice == 4:
+            return
+        print()
+        print("# Current Meal #")
+        print(current_meal)
+
+def main():
+    db.load_test_data()
+
+    choice = 0
+    while choice != 8:
         # print menu - We will be adding to these as we go throughout the course
         print("### Health and Wellness App ###")
         print("1. Add Meal")
         print("2. Add Workout")
         print("3. Search Date")
-        print("4. Exit")
+        print("4. Modify Meal")
+        print("5. Delete Meal")
+        print("6. Modify Workout")
+        print("7. Delete Workout")
+        print("8. Exit")
 
         # get input
-        choice = prompt_int_range("Choose operation: ", 1, 4)
+        choice = prompt_int_range("Choose operation: ", 1, 8)
 
         print() # blank space
 
@@ -93,6 +166,14 @@ def main():
         elif choice == 3:
             search_entry()
         elif choice == 4:
+            modify_meal()
+        elif choice == 5:
+            pass
+        elif choice == 6:
+            pass
+        elif choice == 7:
+            pass
+        elif choice == 8:
             print("System Exiting...")
 
         print() # blank space
