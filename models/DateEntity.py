@@ -38,26 +38,25 @@ class Day:
         self.__workouts.append(workout)
 
     def meal_calories(self):
-        # add up total calories consumed for the day
-        total_calories = 0
-        for meal in self.meals:
-            total_calories += meal.calories
-        return total_calories
+        # use list comprehension to add up total calories consumed for the day
+        return sum([meal.calories for meal in self.meals])
+        #total_calories = 0
+        #for meal in self.meals:
+        #    total_calories += meal.calories
+        #return total_calories
 
     def workout_calories(self):
         # add up total calories burned for the day
-        total_calories = 0
-        for workout in self.workouts:
-            total_calories += workout.calories
-        return total_calories
+        return sum([workout.calories for workout in self.workouts])
+        #total_calories = 0
+        #for workout in self.workouts:
+        #    total_calories += workout.calories
+        #return total_calories
 
-    def net_calories(self):
+    def net_calories(self) -> int :
         # subtract workout calories from meal calories, return net calories
         net_calories = self.meal_calories() - self.workout_calories()
-        if net_calories > 0: # if net_calories < 0, print "+" before value
-            return f"+{net_calories}"
-        else:
-            return str(net_calories)
+        return net_calories
 
     def __eq__(self, other):
         return self.__day == other.day

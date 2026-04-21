@@ -203,10 +203,13 @@ def filter_by_date():
     choice = prompt_int_range("Filter operation: ", 1, 4)
 
     if choice == 1:
+        # filter by year
         print()
+        # get year input and pass to filter function
         year = prompt_int("Enter year to filter: ")
         day_list = db.filter_by_year(year)
-        print(f"\n* Days in {year}")
+        # print list of entries found
+        print(f"\n* Entries in {year}")
         if len(day_list) == 0:
             print(f"No entries found in {year}.")
             return
@@ -214,11 +217,17 @@ def filter_by_date():
             print("****************")
             print(d)
             print()
+        # find and print sum of calories for entries found
+        net_calorie_sum = sum([day.net_calories() for day in day_list])
+        print(f"* Net calories for {year}: {net_calorie_sum}")
     elif choice == 2:
+        # filter by month
         print()
+        # get month input and pass to filter function
         month = prompt_int_range("Enter month to filter (1-12): ", 1, 12)
         day_list = db.filter_by_month(month)
-        print(f"\n* Days in {list_of_months[month-1]}")
+        # print list of entries found
+        print(f"\n* Entries in {list_of_months[month-1]}")
         if len(day_list) == 0:
             print(f"No entries found in {list_of_months[month-1]} {date.today().year}.")
             return
@@ -226,15 +235,23 @@ def filter_by_date():
             print("****************")
             print(d)
             print()
+        # find and print sum of calories for entries found
+        net_calorie_sum = sum([day.net_calories() for day in day_list])
+        print(f"* Net calories for {list_of_months[month-1]}: {net_calorie_sum}")
     elif choice == 3:
+        # filter by date range
         print()
+        # get date range input and pass to filter function
         start_date = prompt_date("Enter start date (MM/DD/YYYY): ")
         end_date = prompt_date("Enter end date (MM/DD/YYYY): ")
+        # while end date is not later than start date, prompt for input
         while end_date < start_date:
             print("Error, end date must come after start date")
             start_date = prompt_date("Enter start date: ")
             end_date = prompt_date("Enter end date: ")
         day_list = db.filter_by_date_range(start_date, end_date)
+        # print list of entries found
+        print(f"\n* Entries in range {start_date} to {end_date}")
         if len(day_list) == 0:
             print("No entries found in this date range.")
             return
@@ -242,6 +259,9 @@ def filter_by_date():
             print("****************")
             print(d)
             print()
+        # find and print sum of calories for entries found
+        net_calorie_sum = sum([day.net_calories() for day in day_list])
+        print(f"* Net calories for this range: {net_calorie_sum}")
     elif choice == 4:
         print("Exiting Filter by Date...")
         return
