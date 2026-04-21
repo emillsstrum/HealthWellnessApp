@@ -46,13 +46,17 @@ def add_day(date_input : date):
         return True
     return False
 
-def filter_by_year(year:int) -> list :
+def filter_by_year(year:int) -> list[Day] :
     days = [value for value in health_data.values()]
     return [d for d in days if d.day.year == year]
 
-def filter_by_month(month:int) -> list :
+def filter_by_month(month:int) -> list[Day] :
     days = [value for value in health_data.values()]
     return [d for d in days if d.day.month == month and d.day.year == date.today().year]
+
+def filter_by_date_range(start:date, end:date) -> list[Day] :
+    days = [value for value in health_data.values()]
+    return [d for d in days if start <= d.day <= end]
 
 def load_test_data():
     """Load 30 days of test data into health_data (selected dates in 2026)"""

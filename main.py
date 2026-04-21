@@ -207,25 +207,41 @@ def filter_by_date():
         year = prompt_int("Enter year to filter: ")
         day_list = db.filter_by_year(year)
         print(f"\n* Days in {year}")
+        if len(day_list) == 0:
+            print(f"No entries found in {year}.")
+            return
         for d in day_list:
             print("****************")
             print(d)
             print()
     elif choice == 2:
         print()
-        month = prompt_int_range("Enter month to filter: ", 1, 12)
+        month = prompt_int_range("Enter month to filter (1-12): ", 1, 12)
         day_list = db.filter_by_month(month)
         print(f"\n* Days in {list_of_months[month-1]}")
         if len(day_list) == 0:
-            print("No entries found for this month")
+            print(f"No entries found in {list_of_months[month-1]} {date.today().year}.")
             return
         for d in day_list:
             print("****************")
             print(d)
             print()
-
     elif choice == 3:
-        pass
+        print()
+        start_date = prompt_date("Enter start date (MM/DD/YYYY): ")
+        end_date = prompt_date("Enter end date (MM/DD/YYYY): ")
+        while end_date < start_date:
+            print("Error, end date must come after start date")
+            start_date = prompt_date("Enter start date: ")
+            end_date = prompt_date("Enter end date: ")
+        day_list = db.filter_by_date_range(start_date, end_date)
+        if len(day_list) == 0:
+            print("No entries found in this date range.")
+            return
+        for d in day_list:
+            print("****************")
+            print(d)
+            print()
     elif choice == 4:
         print("Exiting Filter by Date...")
         return
