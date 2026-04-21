@@ -72,36 +72,36 @@ def search_entry():
 
 def modify_meal():
     print("## Modify Meal ##")
-    # prompt for date to look up Day
-    search_date = prompt_date("Enter date to modify(MM/DD/YYYY): ")
-    print()
-    current = db.get_entry(search_date)
-
-    # if get_entry returns None, date doesn't exist in collection, print message and exit
-    if not current:
-        print("No entry found for this date")
+    meals_list = search_meals("modify")
+    # if no entry found for date or no meals found for entry, exit to main menu
+    if meals_list is None:
+        print("Exiting Modify Meal...")
         return
 
-    # if no meals listed for date, print message and exit
-    if len(current.meals) == 0:
-        print("No meals found for this date")
-        return
+    # variables for list of meals and length of list
+    meals_list_len = len(meals_list)
+    choice = 0
 
-    # print list of meals for searched date
-    print("# Meal List #")
-    for i in range(len(current.meals)):
-        print(f"{i+1}. {current.meals[i]}")
-    print(f"{len(current.meals)+1}. Exit Meal Modification")
-    # get input for which meal to modify
-    print()
-    choice = prompt_int_range(f"Meal to modify (or enter {len(current.meals)+1} to exit): ",
-                                   1, (len(current.meals)+1))
-    # exit if user chooses to exit meal modification
-    if choice == len(current.meals)+1:
-        return
-    # otherwise send meal choice to modify attribute function
-    meal_choice = current.meals[choice-1]
-    modify_meal_attribute(meal_choice)
+    # loop through menu listing meals to modify
+    while choice != (meals_list_len + 1):
+        # print list of meals for searched date
+        print()
+        print("# Meal List #")
+        for i in range(len(meals_list)):
+            print(f"{i+1}. {meals_list[i]}")
+        print(f"{meals_list_len+1}. Exit Meal Modification") # menu option to exit meal modification
+        # get input for which meal to modify
+        print()
+        choice = prompt_int_range(f"Meal to modify (or enter {meals_list_len+1} to exit): ",
+                                       1, (meals_list_len+1))
+
+        # exit if user chooses to exit meal modification
+        if choice == meals_list_len+1:
+            print("Exiting Modify Meal...")
+            return
+        # otherwise send meal choice to modify attribute function
+        meal_choice = meals_list[choice-1]
+        modify_meal_attribute(meal_choice)
 
 def modify_meal_attribute(current_meal):
     # print meal data and
@@ -132,10 +132,43 @@ def modify_meal_attribute(current_meal):
             new_meal_type = get_meal_type()
             current_meal.meal_type = new_meal_type
         if mod_choice == 4:
+            print("Exiting current meal...")
             return
         print()
         print("# Current Meal #")
         print(current_meal)
+
+def delete_meal():
+    # get date and look up Day
+    print("## Delete Meal ##")
+    meals_list = search_meals("delete")
+
+    # variable for length of list
+    meals_list_len = len(meals_list)
+
+    # print list of meals for searched date
+    print()
+    print("# Meal List #")
+    for i in range(len(meals_list)):
+        print(f"{i+1}. {meals_list[i]}")
+    print(f"{meals_list_len+1}. Exit Meal Delete") # menu option to exit to main menu
+    # get input for which meal to delete
+    print()
+    choice = prompt_int_range(f"Meal to delete (or enter {meals_list_len+1} to exit): ",
+                                   1, (meals_list_len+1))
+
+    # exit if user chooses to exit meal modification
+    if choice == meals_list_len+1:
+        return
+    # otherwise delete meal selected by user
+    meals_list.pop(choice-1)
+    # print updated meal list
+    print()
+    print("# Meal List #")
+    for i in range(len(meals_list)):
+        print(f"{i + 1}. {meals_list[i]}")
+    print("Exiting Delete Meal...")
+
 
 def main():
     db.load_test_data()
@@ -168,7 +201,7 @@ def main():
         elif choice == 4:
             modify_meal()
         elif choice == 5:
-            pass
+            delete_meal()
         elif choice == 6:
             pass
         elif choice == 7:
@@ -225,6 +258,39 @@ def get_workout_type():
 
     choice = prompt_int_range("Enter your choice (1-" + str(len(WorkoutType)) + "): ", 1, len(WorkoutType))
     return list(WorkoutType)[choice - 1] # return workout type chosen by user
+
+def search_meals(operation):
+    # search date to find meals to modify or delete
+    # prompt for date to look up Day
+    search_date = prompt_date(f"Enter date to {operation}(MM/DD/YYYY): ")
+    current = db.get_entry(search_date)
+
+    if not current:
+        # if get_entry returns None, date doesn't exist in collection, print message and exit
+        print("No entry found for this date")
+        return None
+    elif len(current.meals) == 0:
+        # if no meals listed for date, print message and exit
+        print("No meals found for this date")
+        return None
+    # else return list of meals
+    return current.meals
+
+def search_workouts(operation):
+    # search date to find workouts to modify or delete
+    search_date = prompt_date(f"Enter date to {operation}(MM/DD/YYYY): ")
+    current = db.get_entry(search_date)
+
+    if not current:
+        # if get_entry returns None, date doesn't exist in collection, print message and exit
+        print("No entry found for this date")
+        return None
+    elif len(current.workouts) == 0:
+        # if no workouts listed for date, print message and exit
+        print("No meals found for this date")
+        return None
+    # else return list of workouts
+    return current.workouts
 
 if __name__ == "__main__":
     main()
