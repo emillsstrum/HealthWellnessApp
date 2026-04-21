@@ -1,5 +1,8 @@
 from datetime import date
 
+list_of_months = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"]
+
 def get_int(num) -> int | None:
     # convert string value to int
     try:

@@ -70,7 +70,7 @@ def search_entry():
     else:
         print("* Error, entry not found")
 
-def list_entries(current_list:list, calorie_entity:str):
+def print_list_entries(current_list:list, calorie_entity:str):
     # list out the meals or workouts
     print()
     print(f"{calorie_entity} List")
@@ -104,9 +104,9 @@ def modify_attribute(calorie_entity:str):
     choice = 0
     while choice != (len(current_list) + 1):
         # print entries
-        list_entries(current_list, calorie_entity)
+        print_list_entries(current_list, calorie_entity)
         # print exit option
-        print(f"{len(current_list)+1}. Exit {calorie_entity} Modification")
+        print(f"{len(current_list)+1}. Exit to main menu")
 
         # get user choice
         choice = prompt_int_range(f"{calorie_entity} to modify (or {len(current_list)+1} to exit): ",
@@ -177,29 +177,65 @@ def delete_entry(calorie_entity:str):
     choice = 0
     while choice != (len(current_list) + 1):
         # print entries
-        list_entries(current_list, calorie_entity)
+        print_list_entries(current_list, calorie_entity)
         # print exit option
-        print(f"{len(current_list) + 1}. Exit Delete {calorie_entity}")
+        print(f"{len(current_list) + 1}. Exit to main menu")
 
         # get user choice
         choice = prompt_int_range(f"{calorie_entity} to delete (or {len(current_list) + 1} to exit): ",
                                   1, len(current_list) + 1)
         # exit if user chooses to exit meal modification
         if choice == len(current_list) + 1:
-            print("Exiting Modify Meal...")
+            print(f"Exiting Delete {calorie_entity}...")
             return
 
         # otherwise delete meal or workout
         current_list.pop(choice-1)
 
-        # print updated
+def filter_by_date():
+    # print header
+    print("## Filter by Date ##")
+    print("1. Filter by Year")
+    print(f"2. Filter by Month (in current year {date.today().year})")
+    print("3. Filter by Date Range")
+    print("4. Exit to main menu")
+
+    choice = prompt_int_range("Filter operation: ", 1, 4)
+
+    if choice == 1:
+        print()
+        year = prompt_int("Enter year to filter: ")
+        day_list = db.filter_by_year(year)
+        print(f"\n* Days in {year}")
+        for d in day_list:
+            print("****************")
+            print(d)
+            print()
+    elif choice == 2:
+        print()
+        month = prompt_int_range("Enter month to filter: ", 1, 12)
+        day_list = db.filter_by_month(month)
+        print(f"\n* Days in {list_of_months[month-1]}")
+        if len(day_list) == 0:
+            print("No entries found for this month")
+            return
+        for d in day_list:
+            print("****************")
+            print(d)
+            print()
+
+    elif choice == 3:
+        pass
+    elif choice == 4:
+        print("Exiting Filter by Date...")
+        return
 
 
 def main():
     db.load_test_data()
 
     choice = 0
-    while choice != 8:
+    while choice != 9:
         # print menu - We will be adding to these as we go throughout the course
         print("### Health and Wellness App ###")
         print("1. Add Meal")
@@ -209,10 +245,11 @@ def main():
         print("5. Delete Meal")
         print("6. Modify Workout")
         print("7. Delete Workout")
-        print("8. Exit")
+        print("8. Filter by Date")
+        print("9. Exit")
 
         # get input
-        choice = prompt_int_range("Choose operation: ", 1, 8)
+        choice = prompt_int_range("Choose operation: ", 1, 9)
 
         print() # blank space
 
@@ -232,6 +269,8 @@ def main():
         elif choice == 7:
             delete_entry("Workout") # delete workout
         elif choice == 8:
+            filter_by_date()
+        elif choice == 9:
             print("System Exiting...")
 
         print() # blank space
