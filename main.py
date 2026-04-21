@@ -77,17 +77,21 @@ def list_entries(current_list:list, calorie_entity:str):
     for i in range (len(current_list)):
         print(f"{i+1}. {current_list[i]}")
 
-def modify_attribute(calorie_entity:str):
-    print(f"## Modify {calorie_entity} ## ")
-    # search date to find meals to modify or delete
+def search_to_modify_or_delete():
+    # search date to find meals to modify
     # prompt for date to look up Day
     search_date = prompt_date(f"Enter date to modify (MM/DD/YYYY): ")
     current = db.get_entry(search_date)
+    return current
 
-    # if get_entry returns None, date doesn't exist in collection, print message and exit
+def modify_attribute(calorie_entity:str):
+    print(f"## Modify {calorie_entity} ## ")
+    current = search_to_modify_or_delete()
+
+    # if get_entry returns None, date doesn't exist in collection, print message and exit to main menu
     if not current:
         print("No entry found for this date")
-        return None
+        return
 
     # set variable for meal or workout list
     current_list = ""
@@ -153,8 +157,43 @@ def modify_attribute(calorie_entity:str):
             print(f"# Current {calorie_entity} #")
             print(current_list[choice - 1])
 
-def delete_entry():
-    pass
+def delete_entry(calorie_entity:str):
+    print(f"## Delete {calorie_entity} ## ")
+    current = search_to_modify_or_delete()
+
+    # if get_entry returns None, date doesn't exist in collection, print message and exit to main menu
+    if not current:
+        print("No entry found for this date")
+        return
+
+    # set variable for meal or workout list
+    current_list = ""
+    if calorie_entity == "Meal":
+        current_list = current.meals
+    elif calorie_entity == "Workout":
+        current_list = current.workouts
+
+    # print menu, get user choice
+    choice = 0
+    while choice != (len(current_list) + 1):
+        # print entries
+        list_entries(current_list, calorie_entity)
+        # print exit option
+        print(f"{len(current_list) + 1}. Exit Delete {calorie_entity}")
+
+        # get user choice
+        choice = prompt_int_range(f"{calorie_entity} to delete (or {len(current_list) + 1} to exit): ",
+                                  1, len(current_list) + 1)
+        # exit if user chooses to exit meal modification
+        if choice == len(current_list) + 1:
+            print("Exiting Modify Meal...")
+            return
+
+        # otherwise delete meal or workout
+        current_list.pop(choice-1)
+
+        # print updated
+
 
 def main():
     db.load_test_data()
@@ -187,11 +226,11 @@ def main():
         elif choice == 4:
             modify_attribute("Meal") # modify meal
         elif choice == 5:
-            pass # delete meal
+            delete_entry("Meal") # delete meal
         elif choice == 6:
             modify_attribute("Workout") # modify workout
         elif choice == 7:
-            pass # delete workout
+            delete_entry("Workout") # delete workout
         elif choice == 8:
             print("System Exiting...")
 
