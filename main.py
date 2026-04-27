@@ -21,6 +21,7 @@ from models.CalorieEntities import Workout
 from datetime import date
 from services.data_xml_io import read_in_xml
 import os
+from services.data_json_io import *
 
 def add_meal():
     print("## Add Meal Entry ##")
@@ -326,6 +327,7 @@ def main():
             load_xml()
         else: # exit option
             print("System Exiting...")
+            write_out_json()  # write out data to JSON file
         print() # blank space
 
 # helper functions

@@ -79,3 +79,12 @@ class Day:
         for workout in self.workouts:
             string += "\n\t" + str(workout)
         return string
+
+    def to_dict(self) -> dict: # create dictionary for object
+        # create lists of meal and workout dictionaries
+        meals_dictionary = [meal.to_dict() for meal in self.meals]
+        workouts_dictionary = [workout.to_dict() for workout in self.workouts]
+        # create dictionary for Day object
+        return {"date": self.day.strftime("%m/%d/%Y"), "meals": meals_dictionary, "workouts": workouts_dictionary}
+
+
