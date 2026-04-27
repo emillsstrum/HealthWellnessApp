@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created function in health_data.py to filter by date range. Finished filter_by_date function in main.py.">
-      <change beforePath="$PROJECT_DIR$/models/DateEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/DateEntity.py" afterDir="false" />
-    </list>
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Modified meal_calories() and workout_calories() methods in DateEntity.py to find sum of list comprehension instead of using loop to get total calories. Added list comprehensions to find net calories for each filtered range. Modified net_calories to return int instead of string." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +229,7 @@
       <workItem from="1774981144594" duration="11773000" />
       <workItem from="1776032539735" duration="17000" />
       <workItem from="1776786702129" duration="12208000" />
-      <workItem from="1776805874020" duration="7608000" />
+      <workItem from="1776805874020" duration="9517000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -433,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776812857990</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Modified meal_calories() and workout_calories() methods in DateEntity.py to find sum of list comprehension instead of using loop to get total calories. Added list comprehensions to find net calories for each filtered range. Modified net_calories to return int instead of string.">
+      <option name="closed" value="true" />
+      <created>1776815283650</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1776815283650</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial project setup." />
     <MESSAGE value="Added loop to repeat through main menu until exit, validation to ensure operation choice is 1-4, added functions for each operation." />
     <MESSAGE value="Created add_meal function to add meal to mealTracker dictionary." />
     <MESSAGE value="Created add_workout function to add workout to workoutTracker dictionary. Updated some variable names in add_meal function." />
@@ -476,7 +481,8 @@
     <MESSAGE value="Created function to search for date to modify or delete entries. Created function to delete entry. Saved before finishing that function because of software crashes/needed to reinstall things." />
     <MESSAGE value="Finished delete entry function. Added option to filter by date to main menu. Created functions in health_data.py to filter by year and month." />
     <MESSAGE value="Created function in health_data.py to filter by date range. Finished filter_by_date function in main.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created function in health_data.py to filter by date range. Finished filter_by_date function in main.py." />
+    <MESSAGE value="Modified meal_calories() and workout_calories() methods in DateEntity.py to find sum of list comprehension instead of using loop to get total calories. Added list comprehensions to find net calories for each filtered range. Modified net_calories to return int instead of string." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified meal_calories() and workout_calories() methods in DateEntity.py to find sum of list comprehension instead of using loop to get total calories. Added list comprehensions to find net calories for each filtered range. Modified net_calories to return int instead of string." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -489,7 +495,7 @@
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1776813444538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1776815249016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1774307107626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$.coverage" NAME=" Coverage Results" MODIFIED="1776032405815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
