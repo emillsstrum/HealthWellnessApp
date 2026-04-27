@@ -19,6 +19,8 @@ from models.DateEntity import Day
 from models.CalorieEntities import Meal
 from models.CalorieEntities import Workout
 from datetime import date
+from services.data_xml_io import read_in_xml
+import os
 
 def add_meal():
     print("## Add Meal Entry ##")
@@ -266,12 +268,25 @@ def filter_by_date():
         print("Exiting Filter by Date...")
         return
 
+def load_xml():
+    # make sure file exists before passing it to XML read function
+    print("## Load XML File Data ##")
+    # get filename
+    filename = input("Enter XML file to load: ")
+
+    # check if file exists
+    if not os.path.exists(filename): # if it doesn't, print error message
+        print("Error: File not found, no data loaded.")
+        return
+    read_in_xml(filename) # if file exists, pass it to XML read function
+    print("File loaded successfully.")
 
 def main():
     db.load_test_data()
 
+    EXIT = 10
     choice = 0
-    while choice != 9:
+    while choice != EXIT:
         # print menu - We will be adding to these as we go throughout the course
         print("### Health and Wellness App ###")
         print("1. Add Meal")
@@ -282,10 +297,11 @@ def main():
         print("6. Modify Workout")
         print("7. Delete Workout")
         print("8. Filter by Date")
-        print("9. Exit")
+        print("9. Load in from XML")
+        print(str(EXIT) + ". Exit")
 
         # get input
-        choice = prompt_int_range("Choose operation: ", 1, 9)
+        choice = prompt_int_range("Choose operation: ", 1, EXIT)
 
         print() # blank space
 
@@ -307,8 +323,9 @@ def main():
         elif choice == 8:
             filter_by_date()
         elif choice == 9:
+            load_xml()
+        else: # exit option
             print("System Exiting...")
-
         print() # blank space
 
 # helper functions
