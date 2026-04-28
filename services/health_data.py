@@ -50,9 +50,9 @@ def filter_by_year(year:int) -> list[Day] :
     days = [value for value in health_data.values()]
     return [d for d in days if d.day.year == year]
 
-def filter_by_month(month:int) -> list[Day] :
+def filter_by_month(month:int, year:int) -> list[Day] :
     days = [value for value in health_data.values()]
-    return [d for d in days if d.day.month == month and d.day.year == date.today().year]
+    return [d for d in days if d.day.month == month and d.day.year == year]
 
 def filter_by_date_range(start:date, end:date) -> list[Day] :
     days = [value for value in health_data.values()]

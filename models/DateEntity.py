@@ -87,4 +87,7 @@ class Day:
         # create dictionary for Day object
         return {"date": self.day.strftime("%m/%d/%Y"), "meals": meals_dictionary, "workouts": workouts_dictionary}
 
-
+    def to_report(self): # for CSV report
+        # return dictionary of date, total meal/workout calories for day, & net calories
+        return {"Date": self.day.strftime("%m/%d/%Y"), "Meal Calories": self.meal_calories(),
+                "Workout Calories": self.workout_calories(), "Net Calories": self.net_calories()}

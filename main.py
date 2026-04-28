@@ -10,18 +10,13 @@
 '''
 # This is the UI for the Health and Wellness system
 
-# Resources used: lectures, reading, copilot AI to generate code for test data
+# Resources used: lectures, reading
 
-from models.EntryType import MealType, WorkoutType
 from utils.input_util import *
 import services.health_data as db
-from models.DateEntity import Day
-from models.CalorieEntities import Meal
-from models.CalorieEntities import Workout
-from datetime import date
 from services.data_xml_io import read_in_xml
-import os
 from services.data_json_io import *
+from services.data_csv_report import write_out_report
 
 def add_meal():
     print("## Add Meal Entry ##")
@@ -199,7 +194,7 @@ def filter_by_date():
     # print header
     print("## Filter by Date ##")
     print("1. Filter by Year")
-    print(f"2. Filter by Month (in current year {date.today().year})")
+    print(f"2. Filter by Month")
     print("3. Filter by Date Range")
     print("4. Exit to main menu")
 
@@ -223,12 +218,16 @@ def filter_by_date():
         # find and print sum of calories for entries found
         net_calorie_sum = sum([day.net_calories() for day in day_list])
         print(f"* Net calories for {year}: {net_calorie_sum}")
+        # provide option to save out data as report
+        save_report(day_list)
     elif choice == 2:
         # filter by month
         print()
+        # get year input
+        year = prompt_int("Enter year of month to filter: ")
         # get month input and pass to filter function
         month = prompt_int_range("Enter month to filter (1-12): ", 1, 12)
-        day_list = db.filter_by_month(month)
+        day_list = db.filter_by_month(month, year)
         # print list of entries found
         print(f"\n* Entries in {list_of_months[month-1]}")
         if len(day_list) == 0:
@@ -241,6 +240,8 @@ def filter_by_date():
         # find and print sum of calories for entries found
         net_calorie_sum = sum([day.net_calories() for day in day_list])
         print(f"* Net calories for {list_of_months[month-1]}: {net_calorie_sum}")
+        # provide option to save out data as report
+        save_report(day_list)
     elif choice == 3:
         # filter by date range
         print()
@@ -265,7 +266,30 @@ def filter_by_date():
         # find and print sum of calories for entries found
         net_calorie_sum = sum([day.net_calories() for day in day_list])
         print(f"* Net calories for this range: {net_calorie_sum}")
+        # provide option to save out data as report
+        save_report(day_list)
     elif choice == 4:
+        print("Exiting Filter by Date...")
+        return
+
+def save_report(day_list):
+    # print options to save data to report or exit
+    print("# Save Report #")
+    print("1. Save to CSV")
+    print("2. Exit to main menu")
+    choice = prompt_int_range("Choose option: ", 1, 2)
+
+    if choice == 1:
+        # get input for filename
+        filename = input("Enter filename: ")
+        if not filename.endswith(".csv"): # if filename doesn't end with .csv, add to end
+            filename = filename + ".csv"
+        # convert data to list of dictionaries
+        report_list = [day.to_report() for day in day_list]
+        # send list to write_out_report() to write data to csv file
+        write_out_report(filename, report_list)
+        print("\n* Saved to CSV")
+    elif choice == 2:
         print("Exiting Filter by Date...")
         return
 
