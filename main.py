@@ -283,7 +283,8 @@ def load_xml():
     print("File loaded successfully.")
 
 def main():
-    db.load_test_data()
+    #db.load_test_data()
+    read_in_json() # read in data from JSON file
 
     EXIT = 10
     choice = 0
