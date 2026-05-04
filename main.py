@@ -13,47 +13,58 @@
 # Resources used: lectures, reading
 
 from utils.input_util import *
-import services.health_data as db
+#import services.health_data as db
 from services.data_xml_io import read_in_xml
 from services.data_json_io import *
 from services.data_csv_report import write_out_report
+import services.health_database as db
 
 def add_meal():
     print("## Add Meal Entry ##")
     # get date input
     meal_date = prompt_date("Enter date of meal(MM/DD/YYYY): ")
+
     # if date doesn't exist in health_data dictionary, call add_day() to add it
-    if db.get_entry(meal_date) is None:
-        db.add_day(meal_date)
+    #if db.get_entry(meal_date) is None:
+    #    db.add_day(meal_date)
+
     # get meal type, meal details, and calorie amount input
     items = input("Enter meal details: ")
     calories = prompt_int("Enter calories: ")
     meal_type = get_meal_type()
+
     #create Meal object
     meal = Meal(items, calories, meal_type)
-    # call health_data.py add_meal() to adds Meal to Day object
-    if db.add_meal(meal_date, meal):
+
+    # add meal to database
+    #if db.add_meal(meal_date, meal):
+    if db.add_meal_to_database(meal_date, meal):
         print("* Entry added.")
-    else: # if db.add_meal() returns false, print error message
+    else: # print error message
         print("* Error, entry not added. Try modifying entry.")
 
 def add_workout():
     print("## Add Workout Entry ##")
     # get date input
     workout_date = prompt_date("Enter date of workout(MM/DD/YYYY): ")
+
     # if date doesn't exist in health_data dictionary, call add_day() to add it
-    if db.get_entry(workout_date) is None:
-        db.add_day(workout_date)
+    #if db.get_entry(workout_date) is None:
+    #    db.add_day(workout_date)
+
     # get workout type, workout details, and calorie amount
     details = input("Enter workout details: ")
     calories = prompt_int("Enter calories burned: ")
     workout_type = get_workout_type()
+
     # create Workout object
     workout = Workout(details, calories, workout_type)
-    # call health_data.py add_meal() to adds Meal to Day object
-    if db.add_workout(workout_date, workout):
+
+    # add workout to database
+    #if db.add_workout(workout_date, workout):
+    if db.add_workout_to_database(workout_date, workout):
         print("* Entry added.")
-    else: # if db.add_workout() returns false, print error message
+    else: # print error message
         print("* Error, entry not added. Try modifying entry.")
 
 def search_entry():
