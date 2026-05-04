@@ -2,8 +2,8 @@ from models.HealthEntry import HealthEntry
 from models.EntryType import MealType, WorkoutType
 
 class Meal(HealthEntry):
-    def __init__(self, description, calories, meal_type:MealType): # create Meal object
-        super().__init__(description, calories)
+    def __init__(self, description, calories, meal_type:MealType, meal_id=0): # create Meal object
+        super().__init__(description, calories, meal_id)
         self.meal_type = meal_type
 
     # getter and setter for meal_type
@@ -26,8 +26,8 @@ class Meal(HealthEntry):
 
 
 class Workout(HealthEntry):
-    def __init__(self, description, calories, workout_type:WorkoutType): # create Workout object
-        super().__init__(description, calories)
+    def __init__(self, description, calories, workout_type:WorkoutType, wo_id=0): # create Workout object
+        super().__init__(description, calories, wo_id)
         self.workout_type = workout_type
 
     # getter and setter for workout_type

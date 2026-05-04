@@ -308,7 +308,7 @@ def load_xml():
 
 def main():
     #db.load_test_data()
-    read_in_json() # read in data from JSON file
+    #read_in_json() # read in data from JSON file
 
     EXIT = 10
     choice = 0
@@ -352,7 +352,7 @@ def main():
             load_xml()
         else: # exit option
             print("System Exiting...")
-            write_out_json()  # write out data to JSON file
+            #write_out_json()  # write out data to JSON file
         print() # blank space
 
 # helper functions

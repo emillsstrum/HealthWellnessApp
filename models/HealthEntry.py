@@ -1,7 +1,8 @@
 class HealthEntry: # base class for Meal / Workout classes
-    def __init__(self, description:str, calories:int):
+    def __init__(self, description:str, calories:int, entry_id=0):
         self._description = description
         self.calories = calories
+        self._id = entry_id
 
     # getter and setter for description
     @property
@@ -21,6 +22,11 @@ class HealthEntry: # base class for Meal / Workout classes
             self._calories = value
         else:
             self._calories = 0
+
+    # getter for id
+    @property
+    def id(self):
+        return self._id
 
     # set up string method
     def __str__(self):
