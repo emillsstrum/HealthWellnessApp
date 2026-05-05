@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import date
 from models.CalorieEntities import *
+from models.DateEntity import Day
 
 DATABASE_NAME = "health_data.db" # database filename
 
@@ -54,3 +55,35 @@ def add_workout_to_database(workout_date:date, workout:Workout) -> bool:
     finally:
         # close connection
         conn.close()
+
+def get_day(search_date:date) -> Day | None:
+    # search for meals and workouts by date
+    # get connection and cursor object
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # get all columns from meals table with matching date
+    cursor.execute("SELECT * FROM meals WHERE date = ?", (search_date,))
+    meals_found = cursor.fetchall()
+
+    # get all columns from workout table with matching date
+    cursor.execute("SELECT * FROM workouts WHERE date = ?", (search_date,))
+    workouts_found = cursor.fetchall()
+
+    # if no meals or workouts found return None
+    if meals_found is None and workouts_found is None:
+        return None
+
+    # create Day object
+    day = Day(search_date)
+
+    # add meals and workouts to lists
+    meals = [Meal(meal[2], meal[3], MealType(meal[4]), meal[0]) for meal in meals_found]
+    workouts = [Workout(workout[2], workout[3], WorkoutType(workout[4]), workout[0]) for workout in workouts_found]
+
+    # assign lists to Day object
+    day.meals = meals
+    day.workouts = workouts
+
+    # return Day object
+    return day

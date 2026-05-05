@@ -73,7 +73,12 @@ def search_entry():
     search_date = prompt_date("Enter date to search(MM/DD/YYYY): ")
     print() # blank space
     # if Day object exists in dictionary, print it
-    entry = db.get_entry(search_date)
+    #entry = db.get_entry(search_date)
+
+    # get day object with meals and workouts that match date
+    entry = db.get_day(search_date)
+
+    # print results
     if entry is not None:
         print(entry)
     else:
@@ -90,7 +95,7 @@ def search_to_modify_or_delete():
     # search date to find meals to modify
     # prompt for date to look up Day
     search_date = prompt_date(f"Enter date to modify (MM/DD/YYYY): ")
-    current = db.get_entry(search_date)
+    current = db.get_day(search_date)
     return current
 
 def modify_attribute(calorie_entity:str):
