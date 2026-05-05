@@ -8,6 +8,7 @@
 
     Make sure to merge branches and create new branches for each week's assignment.
 '''
+
 # This is the UI for the Health and Wellness system
 
 # Resources used: lectures, reading
@@ -18,6 +19,7 @@ from services.data_xml_io import read_in_xml
 from services.data_json_io import *
 from services.data_csv_report import write_out_report
 import services.health_database as db
+from datetime import timedelta
 
 def add_meal():
     print("## Add Meal Entry ##")
@@ -219,9 +221,15 @@ def filter_by_date():
     if choice == 1:
         # filter by year
         print()
-        # get year input and pass to filter function
+        # get year input
         year = prompt_int("Enter year to filter: ")
-        day_list = db.filter_by_year(year)
+        #day_list = db.filter_by_year(year)
+
+        # build start and end dates, send to function to return list of days
+        start_date = str(year) + "-01-01"
+        end_date = str(year+1) + "-01-01"
+        day_list = db.get_day_range(start_date, end_date)
+
         # print list of entries found
         print(f"\n* Entries in {year}")
         if len(day_list) == 0:
@@ -231,9 +239,11 @@ def filter_by_date():
             print("****************")
             print(d)
             print()
+
         # find and print sum of calories for entries found
         net_calorie_sum = sum([day.net_calories() for day in day_list])
         print(f"* Net calories for {year}: {net_calorie_sum}")
+
         # provide option to save out data as report
         save_report(day_list)
     elif choice == 2:
@@ -241,9 +251,19 @@ def filter_by_date():
         print()
         # get year input
         year = prompt_int("Enter year of month to filter: ")
-        # get month input and pass to filter function
+
+        # get month input
         month = prompt_int_range("Enter month to filter (1-12): ", 1, 12)
-        day_list = db.filter_by_month(month, year)
+        #day_list = db.filter_by_month(month, year)
+
+        # build start and end dates, send to function to return list of days
+        start_date = f"{year}-{month:02}-01"
+        if month == 12:
+            month = 0
+            year += 1
+        end_date = f"{year}-{month + 1:02}-01"
+        day_list = db.get_day_range(start_date, end_date)
+
         # print list of entries found
         print(f"\n* Entries in {list_of_months[month-1]}")
         if len(day_list) == 0:
@@ -253,25 +273,33 @@ def filter_by_date():
             print("****************")
             print(d)
             print()
+
         # find and print sum of calories for entries found
         net_calorie_sum = sum([day.net_calories() for day in day_list])
         print(f"* Net calories for {list_of_months[month-1]}: {net_calorie_sum}")
+
         # provide option to save out data as report
         save_report(day_list)
     elif choice == 3:
         # filter by date range
         print()
-        # get date range input and pass to filter function
+        # get date range input
         start_date = prompt_date("Enter start date (MM/DD/YYYY): ")
         end_date = prompt_date("Enter end date (MM/DD/YYYY): ")
+
         # while end date is not later than start date, prompt for input
         while end_date < start_date:
             print("Error, end date must come after start date")
             start_date = prompt_date("Enter start date: ")
             end_date = prompt_date("Enter end date: ")
-        day_list = db.filter_by_date_range(start_date, end_date)
+        #day_list = db.filter_by_date_range(start_date, end_date)
+
+        # build start and end dates, send to function to return list of days
+        end_date = end_date + timedelta(days=1)
+        day_list = db.get_day_range(str(start_date), str(end_date))
+
         # print list of entries found
-        print(f"\n* Entries in range {start_date} to {end_date}")
+        print(f"\n* Entries in date range")
         if len(day_list) == 0:
             print("No entries found in this date range.")
             return

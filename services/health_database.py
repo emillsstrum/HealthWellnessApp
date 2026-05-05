@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import date
+from datetime import date, datetime
 from models.CalorieEntities import *
 from models.DateEntity import Day
 
@@ -27,7 +27,7 @@ def add_meal_to_database(meal_date:date, meal:Meal) -> bool:
         return True
     except Exception as e:
         # if exception, rollback
-        print(e) #TODO comment out
+        print(e)
         conn.rollback()
         return False
     finally:
@@ -49,7 +49,7 @@ def add_workout_to_database(workout_date:date, workout:Workout) -> bool:
         return True
     except Exception as e:
         # if exception, rollback
-        print(e) #TODO comment out
+        print(e)
         conn.rollback()
         return False
     finally:
@@ -87,3 +87,69 @@ def get_day(search_date:date) -> Day | None:
 
     # return Day object
     return day
+
+def get_day_range(start_date:str, end_date:str) -> list:
+    # queries tables for meals and workouts in date range, returns list of day objects
+    # get connection and cursor object
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # get meals in date range
+    cursor.execute("SELECT * FROM meals WHERE date >= ? AND date < ? ORDER BY date",
+                   (start_date, end_date))
+
+    meals = cursor.fetchall()
+
+    # get workouts in date range
+    cursor.execute("SELECT * FROM workouts WHERE date >= ? AND date < ? ORDER BY date",
+                   (start_date, end_date))
+
+    workouts = cursor.fetchall()
+
+    # if meals and workouts tuples empty, return empty list
+    if len(meals) == 0 and len(workouts) == 0:
+        return []
+
+    # dictionary to hold items in range
+    dict_of_days = {}
+
+    # loop through meals, adding date as key and day object as value to dict
+    for meal in meals:
+        meal_date = parse_date(meal[1])
+        # if not in dictionary, add date as key & new Day object as value
+        if meal_date not in dict_of_days:
+            dict_of_days[meal_date] = Day(meal_date)
+        # add meal to day object
+        dict_of_days[meal_date].add_meal(Meal(meal[2], meal[3], MealType(meal[4]), meal[0]))
+
+    # loop through workouts, adding date as key and day object as value to dict
+    for workout in workouts:
+        workout_date = parse_date(workout[1])
+        # if not in dictionary, add date as key & new Day object as value
+        if workout_date not in dict_of_days:
+            dict_of_days[workout_date] = Day(workout_date)
+        # add workout to day object
+        dict_of_days[workout_date].add_workout(Workout(workout[2], workout[3], WorkoutType(workout[4]), workout[0]))
+
+    # return list of dictionary values
+    return list(dict_of_days.values())
+
+def parse_date(date_str:str) -> date:
+    # parses date string to date object
+    return datetime.strptime(date_str, "%Y-%m-%d").date()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

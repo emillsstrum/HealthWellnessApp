@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created functions to add meals and workouts to database. Updated main.py to call database functions instead of functions that add meal/workout to dictionary. Updated the xml data functions to add data to database instead of dictionary.">
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created function to query tables to find meals and workouts that match date input. Updated main.py to use this function to search date.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/health_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/health_database.py" afterDir="false" />
@@ -247,7 +247,8 @@
       <workItem from="1777571367674" duration="683000" />
       <workItem from="1777653344216" duration="77000" />
       <workItem from="1777927528729" duration="7907000" />
-      <workItem from="1777942392500" duration="322000" />
+      <workItem from="1777942392500" duration="611000" />
+      <workItem from="1777996566639" duration="4790000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -505,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777932295785</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Created function to query tables to find meals and workouts that match date input. Updated main.py to use this function to search date.">
+      <option name="closed" value="true" />
+      <created>1777942982493</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1777942982493</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +532,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved dictionaries to database module. Added functions to database module that add meal and workout entries to dictionaries." />
     <MESSAGE value="Added functions to database module that return meal and workout data." />
     <MESSAGE value="Created classes for Meal, Workout, and Day. Created methods for each class." />
     <MESSAGE value="Modified health_data.py to work with objects. Created health_data dictionary to replace mealTracker and workoutTracker dictionaries. Updated add_meal and add_workout to work with objects, created get_entry() and add_day()." />
@@ -548,7 +556,8 @@
     <MESSAGE value="Created method in Day object that returns dictionary to use in CSV reports. Created module and function for CSV file write out. In main.py, created function to optionally save csv report of data printed after filtering by date. Updated filter_by_date() to search year as well as month when filtering by month." />
     <MESSAGE value="Created database with meal and workout tables. Added id field for workout and meal objects. Created services module for database access and added function to get SQLite connection. Commented out functions to read in and write out JSON data in main.py." />
     <MESSAGE value="Created functions to add meals and workouts to database. Updated main.py to call database functions instead of functions that add meal/workout to dictionary. Updated the xml data functions to add data to database instead of dictionary." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created functions to add meals and workouts to database. Updated main.py to call database functions instead of functions that add meal/workout to dictionary. Updated the xml data functions to add data to database instead of dictionary." />
+    <MESSAGE value="Created function to query tables to find meals and workouts that match date input. Updated main.py to use this function to search date." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created function to query tables to find meals and workouts that match date input. Updated main.py to use this function to search date." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -561,7 +570,7 @@
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1777932205714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1778000457284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1774307107626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$.coverage" NAME=" Coverage Results" MODIFIED="1776032405815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
