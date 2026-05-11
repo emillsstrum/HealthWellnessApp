@@ -165,6 +165,11 @@ def modify_attribute(calorie_entity:str):
                     new_type = get_workout_type()
                     item_to_modify.workout_type = new_type
             if mod_choice == 4:
+                # call update function on exit
+                if calorie_entity == "Meal":
+                    db.update_meal(item_to_modify)
+                elif calorie_entity == "Workout":
+                    db.update_workout(item_to_modify)
                 print("Exiting...")
                 return
 

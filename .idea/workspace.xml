@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created function to search meals and workouts by date that returns list of day objects. Updated main.py to use this function to return data in the filter_by_date function.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/health_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/health_data.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/health_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/health_database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,63 +50,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_day_with_empty_calories.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_equal.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_not_equal.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_net_calories_calculation.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_str_method_includes_labels.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_negative.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_positive.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_constructor_negative_calories.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_getter.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter_invalid_type.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_negative.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_positive.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_constructor_negative_calories.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_getter.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_invalid_type.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_setter.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_format.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_month_length.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_separator.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_year_length.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_valid_date.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_invalid_value.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_valid_value.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_invalid_value.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_in_range.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_outside_range.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_valid_value.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DateEntity.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.EntryType.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HealthEntry.executor&quot;: &quot;Run&quot;,
-    &quot;Python.database_utility.executor&quot;: &quot;Run&quot;,
-    &quot;Python.health_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.input_util.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Assignment8&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/emmil/Documents/dev/1501-HealthWellnessApp/services&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_day_with_empty_calories.executor": "Run",
+    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_equal.executor": "Run",
+    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_not_equal.executor": "Run",
+    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_net_calories_calculation.executor": "Run",
+    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_str_method_includes_labels.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_negative.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_positive.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_constructor_negative_calories.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_getter.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter_invalid_type.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_negative.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_positive.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_constructor_negative_calories.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_getter.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_invalid_type.executor": "Run",
+    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_setter.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_data.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_format.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_month_length.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_separator.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_year_length.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_valid_date.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_invalid_value.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_valid_value.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_invalid_value.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_in_range.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_outside_range.executor": "Run",
+    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_valid_value.executor": "Run",
+    "Python.DateEntity.executor": "Debug",
+    "Python.EntryType.executor": "Run",
+    "Python.HealthEntry.executor": "Run",
+    "Python.database_utility.executor": "Run",
+    "Python.health_data.executor": "Run",
+    "Python.input_util.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "git-widget-placeholder": "Assignment9",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/emmil/Documents/dev/1501-HealthWellnessApp/services",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\emmil\Documents\dev\1501-HealthWellnessApp\services" />

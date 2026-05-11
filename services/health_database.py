@@ -139,7 +139,41 @@ def parse_date(date_str:str) -> date:
     return datetime.strptime(date_str, "%Y-%m-%d").date()
 
 
+def update_meal(meal:Meal) -> bool:
+    # update meals table with modified attributes, returns true if successful
+    conn = get_connection()
+    cursor = conn.cursor()
 
+    try:
+        # update table
+        cursor.execute("UPDATE meals SET description = ?, calories = ?, meal_type = ? WHERE id = ?",
+                       (meal.description, meal.calories, str(meal.meal_type), meal.id))
+
+        conn.commit()
+        return cursor.rowcount == 1 # returns true if 1 row updated
+    except Exception:
+        conn.rollback()
+        return False
+    finally:
+        conn.close()
+
+def update_workout(workout:Workout) -> bool:
+    # update workouts table with modified attributes
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # update table
+        cursor.execute("UPDATE workouts SET description = ?, calories = ?, workout_type = ? WHERE id = ?",
+                       (workout.description, workout.calories, str(workout.workout_type), workout.id))
+
+        conn.commit()
+        return cursor.rowcount == 1  # returns true if 1 row updated
+    except Exception:
+        conn.rollback()
+        return False
+    finally:
+        conn.close()
 
 
 
