@@ -17,7 +17,6 @@ class Meal(HealthEntry):
         else: # if not, set as default (Snack)
             self.__meal_type = MealType.SNACK
 
-
     def __str__(self): # override super class __str__ method
         return f"Meal: {self.description}, Calories Consumed: {self.calories}, Meal Type: {self.meal_type}"
 

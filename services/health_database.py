@@ -175,6 +175,38 @@ def update_workout(workout:Workout) -> bool:
     finally:
         conn.close()
 
+def delete_meal(meal_id:int):
+    # delete meal from table, return true if successful
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # delete meal from table
+        cursor.execute("DELETE FROM meals WHERE id = ?", (meal_id,))
+        conn.commit()
+        return cursor.rowcount == 1
+    except Exception:
+        conn.rollback()
+        return False
+    finally:
+        conn.close()
+
+def delete_workout(workout_id:int):
+    # delete workout from table, return true if successful
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # delete workout from table
+        cursor.execute("DELETE FROM workouts WHERE id = ?", (workout_id,))
+        conn.commit()
+        return cursor.rowcount == 1
+    except Exception:
+        conn.rollback()
+        return False
+    finally:
+        conn.close()
+
 
 
 

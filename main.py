@@ -210,8 +210,15 @@ def delete_entry(calorie_entity:str):
             print(f"Exiting Delete {calorie_entity}...")
             return
 
-        # otherwise delete meal or workout
-        current_list.pop(choice-1)
+        # delete meal or workout from list and save object returned from pop()
+        item_to_remove = current_list.pop(choice-1)
+
+        # remove from database via id number
+        if calorie_entity == "Meal":
+            db.delete_meal(item_to_remove.id)
+        elif calorie_entity == "Workout":
+            db.delete_workout(item_to_remove.id)
+
 
 def filter_by_date():
     # print header
