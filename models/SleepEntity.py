@@ -4,8 +4,8 @@ from enum import IntEnum
 
 class SleepSession: # object to help track sleep
     def __init__(self, start_time:datetime, end_time:datetime, quality:SleepQuality, notes:str, entry_id=0):
-        self.start_time = start_time
-        self.end_time = end_time
+        self.__start_time = start_time
+        self.__end_time = end_time
         self.quality = quality
         self.__notes = notes
         self.__id = entry_id
@@ -58,6 +58,24 @@ class SleepSession: # object to help track sleep
     def id(self):
         return self.__id
 
+    def duration(self):
+        # track how much time slept
+        return self.__end_time - self.__start_time # subtract start time from end time
+
+    def __str__(self):
+        # print values of SleepSession
+
+        # format sleep duration to ## Hours ## Minutes
+        duration_seconds = self.duration().total_seconds() # convert duration to seconds
+        duration_minutes = duration_seconds // 60 # get minutes
+        duration_hours = duration_minutes // 60 # get hours
+
+        duration_string = f"{duration_hours:.0f} Hours {duration_minutes % 60:.0f} Minutes"
+
+        # return string
+        return f"Sleep Time: {self.__start_time} - {self.__end_time}, Duration: {duration_string}, "\
+                f"Quality: {self.__quality}, Notes: {self.__notes}"
+
 class SleepQuality(IntEnum): # enumerations for sleep quality rating
     VERY_POOR = 1
     POOR = 2
@@ -80,9 +98,11 @@ class SleepQuality(IntEnum): # enumerations for sleep quality rating
 
 # test
 def main():
-    print(SleepQuality.VERY_POOR)
-    print(SleepQuality.VERY_POOR.name)
-    print(SleepQuality.VERY_POOR.value)
+    sleep1 = SleepSession(datetime(2026, 5, 12, 23, 30, 25, 236),
+                          datetime(2026, 5, 13, 9, 16, 50, 100000),
+                          SleepQuality.GOOD, "")
+
+    print(sleep1)
 
 
 if __name__ == '__main__':

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created functions to delete meals and workouts from tables. Updated main.py to call these functions.">
-      <change afterPath="$PROJECT_DIR$/models/SleepEntity.py" afterDir="false" />
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created SleepSession class to help track sleep, and IntEnum for sleep quality attribute of SleepSession">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/SleepEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/SleepEntity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -547,7 +547,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778533723000</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Created SleepSession class to help track sleep, and IntEnum for sleep quality attribute of SleepSession">
+      <option name="closed" value="true" />
+      <created>1778616976538</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1778616976538</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created base class HealthEntry." />
     <MESSAGE value="Created enumerations for types of meals and workouts." />
     <MESSAGE value="Modified Meal and Workout to be subclasses of HealthEntry. Added meal type property to Meal, and workout type property to Workout." />
     <MESSAGE value="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout." />
@@ -590,7 +597,8 @@
     <MESSAGE value="Created function to search meals and workouts by date that returns list of day objects. Updated main.py to use this function to return data in the filter_by_date function." />
     <MESSAGE value="Created functions to update meal and workout tables using attributes of object passed to function. Updated main.py to use new functions to modify meals and workouts." />
     <MESSAGE value="Created functions to delete meals and workouts from tables. Updated main.py to call these functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created functions to delete meals and workouts from tables. Updated main.py to call these functions." />
+    <MESSAGE value="Created SleepSession class to help track sleep, and IntEnum for sleep quality attribute of SleepSession" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created SleepSession class to help track sleep, and IntEnum for sleep quality attribute of SleepSession" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -608,11 +616,11 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$SleepEntity.coverage" NAME="SleepEntity Coverage Results" MODIFIED="1778615117653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$SleepEntity.coverage" NAME="SleepEntity Coverage Results" MODIFIED="1778623088050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1778533817944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1778617458373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1774307107626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$.coverage" NAME=" Coverage Results" MODIFIED="1776032405815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
