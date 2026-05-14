@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Updated Day class: added blank list for sleep sessions to constructor, created getter/setter for sleep sessions list. Created methods to add and remove sleep session from list, total up sleep duration, find average sleep quality, and create string of sleep sessions from list.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" afterDir="false" />
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/health_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/health_data.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/database_utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/database_utility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/health_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/health_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/data_xml_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/data_xml_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/input_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/input_util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +259,7 @@
       <workItem from="1777996566639" duration="5229000" />
       <workItem from="1778260787595" duration="21000" />
       <workItem from="1778613135872" duration="572000" />
-      <workItem from="1778776513855" duration="10153000" />
+      <workItem from="1778776513855" duration="11641000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -575,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778780985111</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database.">
+      <option name="closed" value="true" />
+      <created>1778789381747</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1778789381747</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified main.py by adding functions for getting meal type and workout type from user, added those inputs to the class calls for Meal and Workout." />
     <MESSAGE value="Created package and files for unit tests. Created tests for functions in input_util.py." />
     <MESSAGE value="Created tests for Meal and Workout objects. Modified HealthEntry calories setter to set default value if calories &gt; 0. Modified Meal and Workout type setters to set default type if value is not correct Enum type." />
     <MESSAGE value="Created tests for Day object." />
@@ -618,7 +623,8 @@
     <MESSAGE value="Created SleepSession class to help track sleep, and IntEnum for sleep quality attribute of SleepSession" />
     <MESSAGE value="For SleepSession: Created method to calculate amount of time slept. Created __str__ method." />
     <MESSAGE value="Updated Day class: added blank list for sleep sessions to constructor, created getter/setter for sleep sessions list. Created methods to add and remove sleep session from list, total up sleep duration, find average sleep quality, and create string of sleep sessions from list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Day class: added blank list for sleep sessions to constructor, created getter/setter for sleep sessions list. Created methods to add and remove sleep session from list, total up sleep duration, find average sleep quality, and create string of sleep sessions from list." />
+    <MESSAGE value="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

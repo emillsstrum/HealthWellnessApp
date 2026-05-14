@@ -1,7 +1,8 @@
 import xml.etree.ElementTree as ET
 
+from models.SleepEntity import SleepSession, SleepQuality
 from services.health_database import add_meal_to_database, add_workout_to_database
-from utils.input_util import get_date
+from utils.input_util import get_date, get_datetime
 #from services.health_data import *
 from models.CalorieEntities import *
 from models.EntryType import *
@@ -36,11 +37,8 @@ def read_in_xml(filename:str) :
         # get date attribute of workout element
         workout_date = get_date(workout.get("date"))
 
-        # if date not in health_data, add it in
-        #if get_entry(workout_date) is None:
-        #    add_day(workout_date)
+        # get the rest of the sleep data
 
-        # get the rest of the workout data
         description = workout.find("description").text
         calories = int(workout.find("calories").text)
         workout_type = WorkoutType(workout.find("workout_type").text)
@@ -52,3 +50,23 @@ def read_in_xml(filename:str) :
 
         # add workout to database
         db.add_workout_to_database(workout_date, new_workout)
+
+    for sleep in root.findall("sleep"): # loop through all the sleep elements
+        # get date attribute of sleep element
+        sleep_date = get_date(sleep.get("date"))
+
+        # if date not in health_data, add it in
+        #if get_entry(workout_date) is None:
+        #    add_day(workout_date)
+
+        # get the rest of the workout data
+        start_time = get_datetime(sleep.find("start_time").text)
+        end_time = get_datetime(sleep.find("end_time").text)
+        quality = SleepQuality(sleep.find("sleep_quality").text)
+        notes = sleep.find("notes").text
+
+        # create Sleep Session object
+        new_sleep_session = SleepSession(start_time, end_time, quality, notes)
+
+        # add sleep session to database
+        db.add_sleep_session_to_database(sleep_date, new_sleep_session)
