@@ -8,7 +8,7 @@
 
     Make sure to merge branches and create new branches for each week's assignment.
 '''
-
+from models.SleepEntity import SleepQuality, SleepSession
 # This is the UI for the Health and Wellness system
 
 # Resources used: lectures, reading
@@ -67,6 +67,46 @@ def add_workout():
     if db.add_workout_to_database(workout_date, workout):
         print("* Entry added.")
     else: # print error message
+        print("* Error, entry not added. Try modifying entry.")
+
+def add_sleep():
+    print("## Add Sleep Session ##")
+    # get type of sleep
+    choice = 0
+    print("Type of Sleep:")
+    print("1. Overnight")
+    print("2. Same day sleep")
+    prompt_int_range("Enter type of sleep: ", 1, 2)
+
+    # get date input
+    sleep_date = prompt_date("Enter date of sleep session (date you woke up - MM/DD/YYYY): ")
+
+    # get start time & wake-up time, make sure they're in correct order
+    start_time = prompt_time("Enter start time(HH:MM): ")
+    end_time = prompt_time("Enter wake up time(HH:MM): ")
+    while start_time > end_time:
+        print("* Error, the start time needs to be before the wake up time")
+        start_time = prompt_time("Enter start time(HH:MM): ")
+        end_time = prompt_time("Enter wake up time(HH:MM): ")
+
+    # get sleep quality and notes
+    quality = get_sleep_quality()
+    notes = input("Enter notes on the sleep: ")
+
+    # combine time and date to make datetime objects
+    if choice == 1:
+        start_datetime = datetime.combine(sleep_date - timedelta(days=1), start_time)
+    else:
+        start_datetime = datetime.combine(sleep_date, start_time)
+    end_datetime = datetime.combine(sleep_date, end_time)
+
+    # create Sleep Session object
+    sleep = SleepSession(start_datetime, end_datetime, quality, notes)
+
+    # add sleep session to database
+    if db.add_sleep_session_to_database(sleep_date, sleep):
+        print("* Sleep session added.")
+    else:  # print error message
         print("* Error, entry not added. Try modifying entry.")
 
 def search_entry():
@@ -366,20 +406,23 @@ def main():
     #db.load_test_data()
     #read_in_json() # read in data from JSON file
 
-    EXIT = 10
+    EXIT = 13
     choice = 0
     while choice != EXIT:
         # print menu - We will be adding to these as we go throughout the course
         print("### Health and Wellness App ###")
         print("1. Add Meal")
         print("2. Add Workout")
-        print("3. Search Date")
-        print("4. Modify Meal")
-        print("5. Delete Meal")
-        print("6. Modify Workout")
-        print("7. Delete Workout")
-        print("8. Filter by Date")
-        print("9. Load in from XML")
+        print("3. Add Sleep")
+        print("4. Search Date")
+        print("5. Modify Meal")
+        print("6. Delete Meal")
+        print("7. Modify Workout")
+        print("8. Delete Workout")
+        print("9. Modify Sleep")
+        print("10. Delete Sleep")
+        print("11. Filter by Date")
+        print("12. Load in from XML")
         print(str(EXIT) + ". Exit")
 
         # get input
@@ -393,18 +436,24 @@ def main():
         elif choice == 2:
             add_workout()
         elif choice == 3:
-            search_entry()
+            add_sleep()
         elif choice == 4:
-            modify_attribute("Meal") # modify meal
+            search_entry()
         elif choice == 5:
-            delete_entry("Meal") # delete meal
+            modify_attribute("Meal") # modify meal
         elif choice == 6:
-            modify_attribute("Workout") # modify workout
+            delete_entry("Meal") # delete meal
         elif choice == 7:
-            delete_entry("Workout") # delete workout
+            modify_attribute("Workout") # modify workout
         elif choice == 8:
-            filter_by_date()
+            delete_entry("Workout") # delete workout
         elif choice == 9:
+            modify_attribute("Sleep") # modify sleep
+        elif choice == 10:
+            delete_entry("Sleep") # delete sleep
+        elif choice == 11:
+            filter_by_date()
+        elif choice == 12:
             load_xml()
         else: # exit option
             print("System Exiting...")
@@ -441,6 +490,14 @@ def prompt_date(prompt):
             return date
         print("Error, enter a valid date.")
 
+def prompt_time(prompt):
+    while True:
+        time_str = input(prompt)
+        t = get_time(time_str)
+        if t:
+            return t
+        print("Error, enter a valid time.")
+
 def get_meal_type():
     # print list of meal types, get user input for meal type
     print("Choose meal type: ")
@@ -458,6 +515,15 @@ def get_workout_type():
 
     choice = prompt_int_range("Enter your choice (1-" + str(len(WorkoutType)) + "): ", 1, len(WorkoutType))
     return list(WorkoutType)[choice - 1] # return workout type chosen by user
+
+def get_sleep_quality():
+    # print list of sleep quality options, get user input
+    print("Select Sleep Quality: ")
+    for index, sleep_quality in enumerate(SleepQuality, start=1): # print options
+        print(f"{index}. {sleep_quality}")
+
+    choice = prompt_int_range("Choice: ", 1, len(SleepQuality))
+    return list(SleepQuality)[choice - 1] # return sleep quality rating chosen by user
 
 if __name__ == "__main__":
     main()

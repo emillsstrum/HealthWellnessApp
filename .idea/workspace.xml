@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database.">
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Updated xml function to read in sleep session data and add it to database. Added input util function to convert string to datetime object.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/data_xml_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/data_xml_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/input_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/input_util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -259,7 +259,7 @@
       <workItem from="1777996566639" duration="5229000" />
       <workItem from="1778260787595" duration="21000" />
       <workItem from="1778613135872" duration="572000" />
-      <workItem from="1778776513855" duration="11641000" />
+      <workItem from="1778776513855" duration="14476000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -581,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778789381747</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Updated xml function to read in sleep session data and add it to database. Added input util function to convert string to datetime object.">
+      <option name="closed" value="true" />
+      <created>1778791006908</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1778791006908</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +607,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created package and files for unit tests. Created tests for functions in input_util.py." />
     <MESSAGE value="Created tests for Meal and Workout objects. Modified HealthEntry calories setter to set default value if calories &gt; 0. Modified Meal and Workout type setters to set default type if value is not correct Enum type." />
     <MESSAGE value="Created tests for Day object." />
     <MESSAGE value="Updated Resources documentation" />
@@ -624,7 +631,8 @@
     <MESSAGE value="For SleepSession: Created method to calculate amount of time slept. Created __str__ method." />
     <MESSAGE value="Updated Day class: added blank list for sleep sessions to constructor, created getter/setter for sleep sessions list. Created methods to add and remove sleep session from list, total up sleep duration, find average sleep quality, and create string of sleep sessions from list." />
     <MESSAGE value="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database." />
+    <MESSAGE value="Updated xml function to read in sleep session data and add it to database. Added input util function to convert string to datetime object." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated xml function to read in sleep session data and add it to database. Added input util function to convert string to datetime object." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

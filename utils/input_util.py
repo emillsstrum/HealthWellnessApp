@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, time
 
 list_of_months = ["January", "February", "March", "April", "May", "June", "July",
                   "August", "September", "October", "November", "December"]
@@ -45,3 +45,18 @@ def get_date(str_date : str) -> date | None:
 def get_datetime(str_date : str) -> datetime:
     # convert string to datetime object
     return datetime.strptime(str_date, "%Y-%m-%d %H:%M:%S.%f")
+
+def get_time(str_time:str) -> time | None:
+    # convert string to time if valid format
+    if len(str_time) == 5 and str_time[2] == ':':
+        split_time = str_time.split(":")
+        hour = get_int(split_time[0])
+        minute = get_int(split_time[1])
+        if hour and minute:
+            try:
+                return time(hour, minute)
+            except ValueError:
+                return None
+        return None
+    else:
+        return None
