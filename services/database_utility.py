@@ -30,6 +30,17 @@ CREATE_WORKOUTS_TABLE = """
     );
 """
 
+CREATE_SLEEP_SESSIONS_TABLE = """
+    CREATE TABLE IF NOT EXISTS sleep_sessions (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        start_time TEXT NOT NULL,
+        end_time TEXT NOT NULL,
+        sleep_quality INTEGER NOT NULL,
+        notes TEXT NOT NULL
+    );
+"""
+
 def  get_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(database_name)
     cursor = conn.cursor()
@@ -51,6 +62,13 @@ def create_workouts_table():
     conn.commit()
     conn.close()
 
+def create_sleep_sessions_table(): # create sleep sessions table
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(CREATE_SLEEP_SESSIONS_TABLE)
+    conn.commit()
+    conn.close()
+
 def delete_meals_table():
     conn = get_connection()
     cursor = conn.cursor()
@@ -65,15 +83,24 @@ def delete_workouts_table():
     conn.commit()
     conn.close()
 
+def delete_sleep_sessions_table(): # delete sleep sessions table
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DROP TABLE IF EXISTS sleep_sessions;")
+    conn.commit()
+    conn.close()
+
 def main():
     choice = 0
-    while choice != 5:
+    while choice != 7:
         print("** Database Management **")
         print("1. Create Meals Table")
         print("2. Create Workouts Table")
-        print("3. Delete Meals Table")
-        print("4. Delete Workouts Table")
-        print("5. Exit")
+        print("3. Create Sleep Sessions Table")
+        print("4. Delete Meals Table")
+        print("5. Delete Workouts Table")
+        print("6. Delete Sleep Sessions Table")
+        print("7. Exit")
 
         try:
             choice = int(input("Enter your choice: "))
@@ -82,9 +109,13 @@ def main():
             elif choice == 2:
                 create_workouts_table()
             elif choice == 3:
-                delete_meals_table()
+                create_sleep_sessions_table()
             elif choice == 4:
+                delete_meals_table()
+            elif choice == 5:
                 delete_workouts_table()
+            elif choice == 6:
+                delete_meals_table()
             else:
                 print("invalid operation")
         except ValueError:

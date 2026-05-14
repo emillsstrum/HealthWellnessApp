@@ -568,7 +568,7 @@
     <routine id="213" parent="1" name="padr"/>
     <schema id="214" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2026-05-04.20:57:08</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-05-14.18:58:22</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="215" parent="14">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1807,96 +1807,132 @@
       <Position>2</Position>
     </argument>
     <table id="627" parent="214" name="meals"/>
-    <table id="628" parent="214" name="sqlite_master">
+    <table id="628" parent="214" name="sleep_sessions"/>
+    <table id="629" parent="214" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="629" parent="214" name="sqlite_sequence">
+    <table id="630" parent="214" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="630" parent="214" name="workouts"/>
-    <column id="631" parent="627" name="id">
+    <table id="631" parent="214" name="workouts"/>
+    <column id="632" parent="627" name="id">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="632" parent="627" name="date">
+    <column id="633" parent="627" name="date">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="633" parent="627" name="description">
+    <column id="634" parent="627" name="description">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="634" parent="627" name="calories">
+    <column id="635" parent="627" name="calories">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="635" parent="627" name="meal_type">
+    <column id="636" parent="627" name="meal_type">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <key id="636" parent="627">
+    <key id="637" parent="627">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="637" parent="628" name="type">
-      <Position>1</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="638" parent="628" name="name">
-      <Position>2</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="639" parent="628" name="tbl_name">
-      <Position>3</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="640" parent="628" name="rootpage">
-      <Position>4</Position>
-      <StoredType>INT|0s</StoredType>
-    </column>
-    <column id="641" parent="628" name="sql">
-      <Position>5</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="642" parent="629" name="name">
-      <Position>1</Position>
-    </column>
-    <column id="643" parent="629" name="seq">
-      <Position>2</Position>
-    </column>
-    <column id="644" parent="630" name="id">
+    <column id="638" parent="628" name="id">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="645" parent="630" name="date">
+    <column id="639" parent="628" name="date">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="646" parent="630" name="description">
+    <column id="640" parent="628" name="start_time">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="647" parent="630" name="calories">
+    <column id="641" parent="628" name="end_time">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="642" parent="628" name="sleep_quality">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="643" parent="628" name="notes">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <key id="644" parent="628">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="645" parent="629" name="type">
+      <Position>1</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="646" parent="629" name="name">
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="647" parent="629" name="tbl_name">
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="648" parent="629" name="rootpage">
+      <Position>4</Position>
+      <StoredType>INT|0s</StoredType>
+    </column>
+    <column id="649" parent="629" name="sql">
+      <Position>5</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="650" parent="630" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="651" parent="630" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="652" parent="631" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="653" parent="631" name="date">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="654" parent="631" name="description">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="655" parent="631" name="calories">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="648" parent="630" name="workout_type">
+    <column id="656" parent="631" name="workout_type">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <key id="649" parent="630">
+    <key id="657" parent="631">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
