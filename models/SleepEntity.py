@@ -67,10 +67,10 @@ class SleepSession: # object to help track sleep
 
         # format sleep duration to ## Hours ## Minutes
         duration_seconds = self.duration().total_seconds() # convert duration to seconds
-        duration_minutes = duration_seconds // 60 # get minutes
-        duration_hours = duration_minutes // 60 # get hours
+        duration_hours = duration_seconds // 3600 # get hours
+        duration_minutes = duration_seconds % 3600 // 60 # get minutes
 
-        duration_string = f"{duration_hours:.0f} Hours {duration_minutes % 60:.0f} Minutes"
+        duration_string = f"{duration_hours:.0f} Hours {duration_minutes:.0f} Minutes"
 
         # return string
         return f"Sleep Time: {self.__start_time} - {self.__end_time}, Duration: {duration_string}, "\
@@ -101,6 +101,8 @@ def main():
     sleep1 = SleepSession(datetime(2026, 5, 12, 23, 30, 25, 236),
                           datetime(2026, 5, 13, 9, 16, 50, 100000),
                           SleepQuality.GOOD, "")
+
+    print(SleepQuality.GOOD)
 
     print(sleep1)
 

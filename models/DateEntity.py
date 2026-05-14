@@ -1,12 +1,17 @@
 from datetime import date
+
+from models import SleepEntity
 from models.CalorieEntities import Meal
 from models.CalorieEntities import Workout
+from models.SleepEntity import SleepSession, SleepQuality
+
 
 class Day:
     def __init__(self, day : date): # create day object
         self.__day = day
         self.__meals = [] # create empty list for meals
         self.__workouts = [] # create empty list for workouts
+        self.__sleep_sessions = [] # empty list for sleep sessions
 
     @property
     def day(self): # get the day/date property
@@ -23,11 +28,18 @@ class Day:
         self.__meals = value
 
     @property
-    def workouts(self) -> list:  # get meals property
+    def workouts(self) -> list:  # get workouts property
         return self.__workouts
     @workouts.setter
-    def workouts(self, value: list): # set meals property
+    def workouts(self, value: list): # set workouts property
         self.__workouts = value
+
+    @property
+    def sleep_sessions(self) -> list:  # get sleep sessions property
+        return self.__sleep_sessions
+    @sleep_sessions.setter
+    def sleep_sessions(self, value: list):  # set sleep sessions property
+        self.__sleep_sessions = value
 
     def add_meal(self, meal : Meal):
         # add Meal object to meals list
@@ -36,6 +48,16 @@ class Day:
     def add_workout(self, workout : Workout):
         # add Workout object to workouts list
         self.__workouts.append(workout)
+
+    def add_sleep_session(self, sleep_session : SleepSession):
+        # add sleep session to list
+        self.__sleep_sessions.append(sleep_session)
+
+    def remove_sleep_session(self, index : int):
+        # remove sleep session from list
+        if 0 <= index < len(self.__sleep_sessions):
+            return self.__sleep_sessions.pop(index)
+        return None
 
     def meal_calories(self):
         # use list comprehension to add up total calories consumed for the day
@@ -58,13 +80,37 @@ class Day:
         net_calories = self.meal_calories() - self.workout_calories()
         return net_calories
 
+    def sleep_duration_seconds(self):
+        # total up sleep durations in seconds
+        return sum([sleep_session.duration().seconds for sleep_session in self.sleep_sessions])
+
+    def average_sleep_quality(self):
+        # return average sleep quality rating
+        total = 0
+        for sleep_session in self.sleep_sessions:
+            total += sleep_session.quality.value
+        average_value = round(total / len(self.sleep_sessions))
+        # return sleep quality enum
+        if average_value == 1:
+            return SleepQuality.VERY_POOR
+        elif average_value == 2:
+            return SleepQuality.POOR
+        elif average_value == 3:
+            return SleepQuality.FAIR
+        elif average_value == 4:
+            return SleepQuality.GOOD
+        elif average_value == 5:
+            return SleepQuality.EXCELLENT
+
+
     def __eq__(self, other):
         return self.__day == other.day
 
     def __str__(self):
         # print out date, meals, and workouts
         return f"Date: {self.day}\nMeals: {self.meals_to_string()}\nWorkouts: {self.workouts_to_string()}\n"\
-        f"\nNet Calories: {self.net_calories()}"
+        f"\nNet Calories: {self.net_calories()}\nSleeps: {self.sleep_sessions_to_string()}\nAverage Sleep Quality: "\
+        f"{self.average_sleep_quality()}"
 
     def meals_to_string(self):
         # create string of meals
@@ -78,6 +124,13 @@ class Day:
         string = ""
         for workout in self.workouts:
             string += "\n\t" + str(workout)
+        return string
+
+    def sleep_sessions_to_string(self):
+        # create string of sleep sessions
+        string = ""
+        for sleep_session in self.sleep_sessions:
+            string += "\n\t" + str(sleep_session)
         return string
 
     def to_dict(self) -> dict: # create dictionary for object
