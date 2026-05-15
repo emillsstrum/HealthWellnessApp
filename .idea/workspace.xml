@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Added menu options to main to add, update, and delete sleep sessions. Created function to add new sleep session. Added function to prompt for time and input utility function that converts time string to time object if correctly formatted.">
+    <list default="true" id="5a8045c2-4060-4fd7-aa24-7768512acc98" name="Changes" comment="Created function in main to modify sleep session attributes. Fixed add_sleep() so start and end datetime objects compared instead of  time objects. Fixed reading in sleep data and adding to table so sleep quality entered as int. Fixed strptime() format arguments in parse_datetime() and get_datetime().">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0a1f52ac-dde9-42f8-ba72-7ba0864f241c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/health_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/health_data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/data_xml_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/data_xml_io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/database_utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/database_utility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DateEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/DateEntity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/SleepEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/SleepEntity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/health_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/health_database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/input_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/input_util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,65 +53,65 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_day_with_empty_calories.executor": "Run",
-    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_equal.executor": "Run",
-    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_not_equal.executor": "Run",
-    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_net_calories_calculation.executor": "Run",
-    "Python tests.Python tests for test.test_day_entity.TestDayEntity.test_str_method_includes_labels.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_negative.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_positive.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_constructor_negative_calories.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_getter.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter_invalid_type.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_negative.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_positive.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_constructor_negative_calories.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_getter.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_invalid_type.executor": "Run",
-    "Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_setter.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_data.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_format.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_month_length.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_separator.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_year_length.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_valid_date.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_invalid_value.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_valid_value.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_invalid_value.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_in_range.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_outside_range.executor": "Run",
-    "Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_valid_value.executor": "Run",
-    "Python.DateEntity.executor": "Debug",
-    "Python.EntryType.executor": "Run",
-    "Python.HealthEntry.executor": "Run",
-    "Python.SleepEntity.executor": "Run",
-    "Python.database_utility.executor": "Run",
-    "Python.health_data.executor": "Run",
-    "Python.health_database.executor": "Run",
-    "Python.input_util.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "git-widget-placeholder": "FinalProject",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/emmil/Documents/dev/1501-HealthWellnessApp/services",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_day_with_empty_calories.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_equal.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_eq_method_not_equal.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_net_calories_calculation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_day_entity.TestDayEntity.test_str_method_includes_labels.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_negative.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_calories_setter_positive.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_constructor_negative_calories.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_getter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_meal_type_setter_invalid_type.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_negative.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_calories_setter_positive.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_constructor_negative_calories.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_getter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_invalid_type.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_health_entry_calorie_entities.TestCalorieEntities.test_workout_type_setter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_format.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_month_length.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_separator.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_invalid_year_length.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_date_valid_date.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_invalid_value.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_float_valid_value.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_invalid_value.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_in_range.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_range_value_outside_range.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_input_util.TestInputUtil.test_get_int_valid_value.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DateEntity.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.EntryType.executor&quot;: &quot;Run&quot;,
+    &quot;Python.HealthEntry.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SleepEntity.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database_utility.executor&quot;: &quot;Run&quot;,
+    &quot;Python.health_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.health_database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.input_util.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FinalProject&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/emmil/Documents/dev/1501-HealthWellnessApp/services&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\emmil\Documents\dev\1501-HealthWellnessApp\services" />
@@ -279,7 +278,8 @@
       <workItem from="1777996566639" duration="5229000" />
       <workItem from="1778260787595" duration="21000" />
       <workItem from="1778613135872" duration="572000" />
-      <workItem from="1778776513855" duration="24130000" />
+      <workItem from="1778776513855" duration="24226000" />
+      <workItem from="1778862841130" duration="6082000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project setup.">
       <option name="closed" value="true" />
@@ -617,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778793816350</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Created function in main to modify sleep session attributes. Fixed add_sleep() so start and end datetime objects compared instead of  time objects. Fixed reading in sleep data and adding to table so sleep quality entered as int. Fixed strptime() format arguments in parse_datetime() and get_datetime().">
+      <option name="closed" value="true" />
+      <created>1778803371714</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1778803371714</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +643,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created tests for Day object." />
     <MESSAGE value="Updated Resources documentation" />
     <MESSAGE value="Used copilot to generate function to create test data and added function to health_data.py. Updated main menu to include options to modify/delete meals and workouts. Created function to modify meal: search date, list meals found for date, and get user input to select meal to modify. Created function to modify attribute: get user input for which attribute to modify, then get user input for new attribute." />
     <MESSAGE value="workspace.xml" />
@@ -660,7 +667,8 @@
     <MESSAGE value="Created table for sleep sessions. Updated health database functions: added function to parse string into datetime object. Updated get_day and get_day_range functions to query sleep sessions table. Created function to add sleep session object to database. Created functions to update sleep session in database and remove sleep session from database." />
     <MESSAGE value="Updated xml function to read in sleep session data and add it to database. Added input util function to convert string to datetime object." />
     <MESSAGE value="Added menu options to main to add, update, and delete sleep sessions. Created function to add new sleep session. Added function to prompt for time and input utility function that converts time string to time object if correctly formatted." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added menu options to main to add, update, and delete sleep sessions. Created function to add new sleep session. Added function to prompt for time and input utility function that converts time string to time object if correctly formatted." />
+    <MESSAGE value="Created function in main to modify sleep session attributes. Fixed add_sleep() so start and end datetime objects compared instead of  time objects. Fixed reading in sleep data and adding to table so sleep quality entered as int. Fixed strptime() format arguments in parse_datetime() and get_datetime()." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created function in main to modify sleep session attributes. Fixed add_sleep() so start and end datetime objects compared instead of  time objects. Fixed reading in sleep data and adding to table so sleep quality entered as int. Fixed strptime() format arguments in parse_datetime() and get_datetime()." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -675,10 +683,10 @@
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$EntryType.coverage" NAME="EntryType Coverage Results" MODIFIED="1775505892697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$health_data.coverage" NAME="health_data Coverage Results" MODIFIED="1774313894357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$HealthEntry.coverage" NAME="HealthEntry Coverage Results" MODIFIED="1775504256263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1778802923487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$main.coverage" NAME="main Coverage Results" MODIFIED="1778868677575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$DateEntity.coverage" NAME="DateEntity Coverage Results" MODIFIED="1774991351182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$.coverage" NAME=" Coverage Results" MODIFIED="1776032405815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$input_util.coverage" NAME="input_util Coverage Results" MODIFIED="1778800152698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$database_utility.coverage" NAME="database_utility Coverage Results" MODIFIED="1778802864386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+    <SUITE FILE_PATH="coverage/1501_HealthWellnessApp$database_utility.coverage" NAME="database_utility Coverage Results" MODIFIED="1778865240590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
   </component>
 </project>

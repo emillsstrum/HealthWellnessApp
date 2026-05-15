@@ -74,7 +74,7 @@ class SleepSession: # object to help track sleep
 
         # return string
         return f"Sleep Time: {self.__start_time} - {self.__end_time}, Duration: {duration_string}, "\
-                f"Quality: {self.__quality}, Notes: {self.__notes}"
+                f"Quality: {self.__quality}\n\t\tNotes: {self.__notes}"
 
 class SleepQuality(IntEnum): # enumerations for sleep quality rating
     VERY_POOR = 1

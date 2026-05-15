@@ -232,13 +232,14 @@ def update_sleep_session(sleep:SleepSession) -> bool:
 
     try:
         # update table
-        cursor.execute("""UPDATE sleep_sessions SET start_time = ?, end_time = ?, sleep_quality = ?, notes = ?, 
+        cursor.execute("""UPDATE sleep_sessions SET start_time = ?, end_time = ?, sleep_quality = ?, notes = ? 
                         WHERE id = ?""",
-                       (sleep.start_time, sleep.end_time, str(sleep.quality), sleep.notes, sleep.id))
+                       (sleep.start_time, sleep.end_time, sleep.quality, sleep.notes, sleep.id))
 
         conn.commit()
         return cursor.rowcount == 1  # returns true if 1 row updated
     except Exception:
+        #print(e)
         conn.rollback()
         return False
     finally:

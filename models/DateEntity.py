@@ -84,12 +84,27 @@ class Day:
         # total up sleep durations in seconds
         return sum([sleep_session.duration().seconds for sleep_session in self.sleep_sessions])
 
+    def sleep_duration_hours_minutes(self) -> str:
+        # convert total sleep seconds to hours and minutes
+        duration_seconds = self.sleep_duration_seconds()
+        duration_hours = duration_seconds // 3600  # get hours
+        duration_minutes = duration_seconds % 3600 // 60  # get minutes
+
+        return f"{duration_hours:.0f} Hours {duration_minutes:.0f} Minutes"
+
     def average_sleep_quality(self):
         # return average sleep quality rating
         total = 0
+
+        # avoid dividing by zero
+        if len(self.sleep_sessions) == 0:
+            return None
+
+        # find sum and average
         for sleep_session in self.sleep_sessions:
             total += sleep_session.quality.value
         average_value = round(total / len(self.sleep_sessions))
+
         # return sleep quality enum
         if average_value == 1:
             return SleepQuality.VERY_POOR
@@ -107,10 +122,11 @@ class Day:
         return self.__day == other.day
 
     def __str__(self):
-        # print out date, meals, and workouts
-        return f"Date: {self.day}\nMeals: {self.meals_to_string()}\nWorkouts: {self.workouts_to_string()}\n"\
-        f"\nNet Calories: {self.net_calories()}\nSleeps: {self.sleep_sessions_to_string()}\nAverage Sleep Quality: "\
-        f"{self.average_sleep_quality()}"
+        # print out date, meals, workouts, sleep sessions
+        return f"Date: {self.day}\nMeals: {self.meals_to_string()}\nWorkouts: {self.workouts_to_string()}"\
+                f"\nNet Calories: {self.net_calories()}\nSleeps: {self.sleep_sessions_to_string()}"\
+                f"\nTotal Sleep: {self.sleep_duration_hours_minutes()}\nAverage Sleep Quality: "\
+                f"{self.average_sleep_quality()}"
 
     def meals_to_string(self):
         # create string of meals
@@ -141,6 +157,7 @@ class Day:
         return {"date": self.day.strftime("%m/%d/%Y"), "meals": meals_dictionary, "workouts": workouts_dictionary}
 
     def to_report(self): # for CSV report
-        # return dictionary of date, total meal/workout calories for day, & net calories
+        # return dictionary of date, total meal/workout calories for day, net calories, total sleep, & average quality
         return {"Date": self.day.strftime("%m/%d/%Y"), "Meal Calories": self.meal_calories(),
-                "Workout Calories": self.workout_calories(), "Net Calories": self.net_calories()}
+                "Workout Calories": self.workout_calories(), "Net Calories": self.net_calories(),
+                "Total Sleep": self.sleep_duration_hours_minutes(), "Average Sleep Quality": self.average_sleep_quality()}

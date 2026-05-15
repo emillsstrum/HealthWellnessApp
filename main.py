@@ -85,15 +85,6 @@ def add_sleep():
     start_time = prompt_time("Enter start time(HH:MM): ")
     end_time = prompt_time("Enter wake up time(HH:MM): ")
 
-    #while start_time > end_time:
-    #    print("* Error, the start time needs to be before the wake up time")
-    #    start_time = prompt_time("Enter start time(HH:MM): ")
-    #    end_time = prompt_time("Enter wake up time(HH:MM): ")
-
-    # get sleep quality and notes
-    quality = get_sleep_quality()
-    notes = input("\nEnter notes on the sleep: ")
-
     # combine time and date to make datetime objects
     if choice == 1:
         start_datetime = datetime.combine(sleep_date - timedelta(days=1), start_time)
@@ -103,8 +94,12 @@ def add_sleep():
 
     # make sure datetimes in correct order, exit if not
     if start_datetime > end_datetime:
-        print("* Error, the start time cannot be after wake up time")
+        print("\n* Error, wake up must be after start time/date.")
         return
+
+    # get sleep quality and notes
+    quality = get_sleep_quality()
+    notes = input("\nEnter notes on the sleep: ")
 
     # create Sleep Session object
     sleep = SleepSession(start_datetime, end_datetime, quality, notes)
@@ -135,7 +130,7 @@ def search_entry():
 def print_list_entries(current_list:list, calorie_entity:str):
     # list out the meals or workouts
     print()
-    print(f"{calorie_entity} List")
+    print(f"# {calorie_entity} List #")
     for i in range (len(current_list)):
         print(f"{i+1}. {current_list[i]}")
 
@@ -188,13 +183,13 @@ def modify_attribute(calorie_entity:str):
         # print options for updating meal data
         mod_choice = 0
         while mod_choice != 4:
-            print()
             print("1. Modify Item Description")
             print("2. Modify Calories")
             print(f"3. Modify {calorie_entity} Type")
             print(f"4. Exit Current {calorie_entity} Modification")
             # get input for what attribute to modify
             mod_choice = prompt_int_range("Modify Attribute: ", 1, 4)
+            print()
 
             # modify based on user input
             if mod_choice == 1:
@@ -216,8 +211,7 @@ def modify_attribute(calorie_entity:str):
                     db.update_meal(item_to_modify)
                 elif calorie_entity == "Workout":
                     db.update_workout(item_to_modify)
-                print("Exiting...")
-                return
+                print(f"Exiting Current {calorie_entity} Modification...")
 
             # print updated meal/workout data
             print()
@@ -266,7 +260,6 @@ def modify_sleep_attribute():
         # print options for updating sleep session data
         mod_choice = 0
         while mod_choice != 5:
-            print()
             print("1. Modify Start Time")
             print("2. Modify End Time")
             print("3. Modify Quality")
@@ -275,6 +268,7 @@ def modify_sleep_attribute():
 
             # get input for what attribute to modify
             mod_choice = prompt_int_range("Modify Attribute: ", 1, 5)
+            print()
 
             # modify based on user input
             if mod_choice == 1: # modify start time
@@ -298,8 +292,8 @@ def modify_sleep_attribute():
                 if start_datetime < item_to_modify.end_time:
                     item_to_modify.start_time = start_datetime # modify start time
                 else:
-                    print("Error, start time cannot be after end time. Exiting modification...")
-                    return
+                    print("* Error, the start time needs to be before end time.")
+                    #return
             elif mod_choice == 2: # modify end time
                 # get new end time
                 new_end_time = prompt_time("Enter new end time(HH:MM): ")
@@ -317,59 +311,62 @@ def modify_sleep_attribute():
                 new_quality = get_sleep_quality()
                 item_to_modify.quality = new_quality
             elif mod_choice == 4: # modify notes
-                new_notes = input("Enter new notes on the sleep")
+                new_notes = input("Enter new notes on the sleep: ")
                 item_to_modify.notes = new_notes
             elif mod_choice == 5:
                 # call update function on exit
                 db.update_sleep_session(item_to_modify)
-                print("Exiting...")
-                return
+                print("Exiting Current Sleep Modification...")
 
             # print updated sleep session data
             print()
             print(f"# Current Sleep Session #")
             print(current_list[choice - 1])
 
-def delete_entry(calorie_entity:str):
-    print(f"## Delete {calorie_entity} ## ")
+def delete_entry(entity:str):
+    print(f"## Delete {entity} ## ")
     current = search_to_modify_or_delete()
 
-    # if get_entry returns None, date doesn't exist in collection, print message and exit to main menu
+    # if date doesn't exist in collection, print message and exit to main menu
     if not current:
         print("No entry found for this date")
         return
 
-    # set variable for meal or workout list
+    # set variable for list
     current_list = ""
-    if calorie_entity == "Meal":
+    if entity == "Meal":
         current_list = current.meals
-    elif calorie_entity == "Workout":
+    elif entity == "Workout":
         current_list = current.workouts
+    elif entity == "Sleep":
+        current_list = current.sleep_sessions
 
     # print menu, get user choice
     choice = 0
     while choice != (len(current_list) + 1):
         # print entries
-        print_list_entries(current_list, calorie_entity)
+        print_list_entries(current_list, entity)
         # print exit option
         print(f"{len(current_list) + 1}. Exit to main menu")
 
         # get user choice
-        choice = prompt_int_range(f"{calorie_entity} to delete (or {len(current_list) + 1} to exit): ",
+        choice = prompt_int_range(f"{entity} to delete (or {len(current_list) + 1} to exit): ",
                                   1, len(current_list) + 1)
         # exit if user chooses to exit meal modification
         if choice == len(current_list) + 1:
-            print(f"Exiting Delete {calorie_entity}...")
+            print(f"Exiting Delete {entity}...")
             return
 
-        # delete meal or workout from list and save object returned from pop()
+        # delete meal/workout/sleep from list and save object returned from pop()
         item_to_remove = current_list.pop(choice-1)
 
         # remove from database via id number
-        if calorie_entity == "Meal":
+        if entity == "Meal":
             db.delete_meal(item_to_remove.id)
-        elif calorie_entity == "Workout":
+        elif entity == "Workout":
             db.delete_workout(item_to_remove.id)
+        elif entity == "Sleep":
+            db.delete_sleep_session(item_to_remove.id)
 
 
 def filter_by_date():
@@ -630,7 +627,7 @@ def get_workout_type():
 
 def get_sleep_quality():
     # print list of sleep quality options, get user input
-    print("\nSelect Sleep Quality: ")
+    print("Select Sleep Quality: ")
     for index, sleep_quality in enumerate(SleepQuality, start=1): # print options
         print(f"{index}. {sleep_quality}")
 
