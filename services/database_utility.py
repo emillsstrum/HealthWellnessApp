@@ -115,7 +115,7 @@ def main():
             elif choice == 5:
                 delete_workouts_table()
             elif choice == 6:
-                delete_meals_table()
+                delete_sleep_sessions_table()
             else:
                 print("invalid operation")
         except ValueError:

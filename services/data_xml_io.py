@@ -62,7 +62,7 @@ def read_in_xml(filename:str) :
         # get the rest of the workout data
         start_time = get_datetime(sleep.find("start_time").text)
         end_time = get_datetime(sleep.find("end_time").text)
-        quality = SleepQuality(sleep.find("sleep_quality").text)
+        quality = SleepQuality(int(sleep.find("sleep_quality").text))
         notes = sleep.find("notes").text
 
         # create Sleep Session object

@@ -44,7 +44,7 @@ def get_date(str_date : str) -> date | None:
 
 def get_datetime(str_date : str) -> datetime:
     # convert string to datetime object
-    return datetime.strptime(str_date, "%Y-%m-%d %H:%M:%S.%f")
+    return datetime.strptime(str_date, "%Y-%m-%d %H:%M")
 
 def get_time(str_time:str) -> time | None:
     # convert string to time if valid format
@@ -52,11 +52,18 @@ def get_time(str_time:str) -> time | None:
         split_time = str_time.split(":")
         hour = get_int(split_time[0])
         minute = get_int(split_time[1])
-        if hour and minute:
-            try:
-                return time(hour, minute)
-            except ValueError:
-                return None
-        return None
+
+        try:
+            return time(hour, minute)
+        except ValueError:
+            return None
     else:
         return None
+
+# test
+def main():
+    min = (get_int(00))
+    print(time(12, min))
+
+if __name__ == "__main__":
+    main()

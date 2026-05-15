@@ -76,22 +76,23 @@ def add_sleep():
     print("Type of Sleep:")
     print("1. Overnight")
     print("2. Same day sleep")
-    prompt_int_range("Enter type of sleep: ", 1, 2)
+    choice = prompt_int_range("Enter type of sleep: ", 1, 2)
 
     # get date input
-    sleep_date = prompt_date("Enter date of sleep session (date you woke up - MM/DD/YYYY): ")
+    sleep_date = prompt_date("\nEnter date of sleep session (date you woke up - MM/DD/YYYY): ")
 
     # get start time & wake-up time, make sure they're in correct order
     start_time = prompt_time("Enter start time(HH:MM): ")
     end_time = prompt_time("Enter wake up time(HH:MM): ")
-    while start_time > end_time:
-        print("* Error, the start time needs to be before the wake up time")
-        start_time = prompt_time("Enter start time(HH:MM): ")
-        end_time = prompt_time("Enter wake up time(HH:MM): ")
+
+    #while start_time > end_time:
+    #    print("* Error, the start time needs to be before the wake up time")
+    #    start_time = prompt_time("Enter start time(HH:MM): ")
+    #    end_time = prompt_time("Enter wake up time(HH:MM): ")
 
     # get sleep quality and notes
     quality = get_sleep_quality()
-    notes = input("Enter notes on the sleep: ")
+    notes = input("\nEnter notes on the sleep: ")
 
     # combine time and date to make datetime objects
     if choice == 1:
@@ -99,6 +100,11 @@ def add_sleep():
     else:
         start_datetime = datetime.combine(sleep_date, start_time)
     end_datetime = datetime.combine(sleep_date, end_time)
+
+    # make sure datetimes in correct order, exit if not
+    if start_datetime > end_datetime:
+        print("* Error, the start time cannot be after wake up time")
+        return
 
     # create Sleep Session object
     sleep = SleepSession(start_datetime, end_datetime, quality, notes)
@@ -134,7 +140,7 @@ def print_list_entries(current_list:list, calorie_entity:str):
         print(f"{i+1}. {current_list[i]}")
 
 def search_to_modify_or_delete():
-    # search date to find meals to modify
+    # search date to find meals/workouts to modify
     # prompt for date to look up Day
     search_date = prompt_date(f"Enter date to modify (MM/DD/YYYY): ")
     current = db.get_day(search_date)
@@ -216,6 +222,112 @@ def modify_attribute(calorie_entity:str):
             # print updated meal/workout data
             print()
             print(f"# Current {calorie_entity} #")
+            print(current_list[choice - 1])
+
+def modify_sleep_attribute():
+    print("## Modify Sleep ##")
+    # prompt for date to look up Day
+    search_date = prompt_date(f"Enter date to modify (MM/DD/YYYY): ")
+    current = db.get_day(search_date)
+
+    # if get_entry returns None, date doesn't exist in collection, print message and exit to main menu
+    if not current:
+        print("No entry found for this date")
+        return
+
+    # set variable for list
+    current_list = current.sleep_sessions
+
+    # print menu, get user choice
+    choice = 0
+    while choice != (len(current_list) + 1):
+        # print entries
+        print_list_entries(current_list, "Sleep")
+        # print exit option
+        print(f"{len(current_list)+1}. Exit to main menu")
+
+        # get user choice
+        choice = prompt_int_range(f"Sleep to modify (or {len(current_list)+1} to exit): ",
+                                  1, len(current_list)+1)
+        # exit if user chooses to exit modification
+        if choice == len(current_list)+1:
+            print("Exiting Modify Sleep...")
+            return
+
+        # otherwise modify attribute
+        # set variable for user's choice
+        item_to_modify = current_list[choice-1]
+
+        # print sleep session data
+        print()
+        print("# Current Sleep Session #")
+        print(current_list[choice-1])
+
+        # print options for updating sleep session data
+        mod_choice = 0
+        while mod_choice != 5:
+            print()
+            print("1. Modify Start Time")
+            print("2. Modify End Time")
+            print("3. Modify Quality")
+            print("4. Modify Notes")
+            print("5. Exit Current Sleep Modification")
+
+            # get input for what attribute to modify
+            mod_choice = prompt_int_range("Modify Attribute: ", 1, 5)
+
+            # modify based on user input
+            if mod_choice == 1: # modify start time
+                # get type of sleep
+                type_choice = 0
+                print("Type of Sleep:")
+                print("1. Overnight")
+                print("2. Same day sleep")
+                prompt_int_range("Enter type of sleep: ", 1, 2)
+
+                # get new start time
+                new_start_time = prompt_time("\nEnter new start time(HH:MM): ")
+
+                # modify datetime variable based on type of sleep
+                if type_choice == 1:
+                    start_datetime = datetime.combine(current.day - timedelta(days=1), new_start_time)
+                else:
+                    start_datetime = datetime.combine(current.day, new_start_time)
+
+                # make sure start time before end time
+                if start_datetime < item_to_modify.end_time:
+                    item_to_modify.start_time = start_datetime # modify start time
+                else:
+                    print("Error, start time cannot be after end time. Exiting modification...")
+                    return
+            elif mod_choice == 2: # modify end time
+                # get new end time
+                new_end_time = prompt_time("Enter new end time(HH:MM): ")
+
+                # create datetime object
+                end_datetime = datetime.combine(current.day, new_end_time)
+
+                # make sure start time before end time
+                if end_datetime > item_to_modify.start_time:
+                    item_to_modify.end_time = end_datetime  # modify end time
+                else:
+                    print("Error, end time cannot be before start time. Exiting modification...")
+                    return
+            elif mod_choice == 3: # modify quality
+                new_quality = get_sleep_quality()
+                item_to_modify.quality = new_quality
+            elif mod_choice == 4: # modify notes
+                new_notes = input("Enter new notes on the sleep")
+                item_to_modify.notes = new_notes
+            elif mod_choice == 5:
+                # call update function on exit
+                db.update_sleep_session(item_to_modify)
+                print("Exiting...")
+                return
+
+            # print updated sleep session data
+            print()
+            print(f"# Current Sleep Session #")
             print(current_list[choice - 1])
 
 def delete_entry(calorie_entity:str):
@@ -448,7 +560,7 @@ def main():
         elif choice == 8:
             delete_entry("Workout") # delete workout
         elif choice == 9:
-            modify_attribute("Sleep") # modify sleep
+            modify_sleep_attribute() # modify sleep
         elif choice == 10:
             delete_entry("Sleep") # delete sleep
         elif choice == 11:
@@ -518,7 +630,7 @@ def get_workout_type():
 
 def get_sleep_quality():
     # print list of sleep quality options, get user input
-    print("Select Sleep Quality: ")
+    print("\nSelect Sleep Quality: ")
     for index, sleep_quality in enumerate(SleepQuality, start=1): # print options
         print(f"{index}. {sleep_quality}")
 

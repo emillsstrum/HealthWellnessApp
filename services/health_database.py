@@ -68,7 +68,7 @@ def add_sleep_session_to_database(sleep_date:date, sleep:SleepSession) -> bool:
         # insert into sleep_sessions table
         cursor.execute("""INSERT INTO sleep_sessions (date, start_time, end_time, sleep_quality, notes) 
                           VALUES(?, ?, ?, ?, ?)""",
-                       (sleep_date, sleep.start_time, sleep.end_time, str(sleep.quality), sleep.notes))
+                       (sleep_date, sleep.start_time, sleep.end_time, sleep.quality, sleep.notes))
         conn.commit()
         return True
     except Exception as e:
@@ -108,7 +108,7 @@ def get_day(search_date:date) -> Day | None:
     # add meals and workouts to lists
     meals = [Meal(meal[2], meal[3], MealType(meal[4]), meal[0]) for meal in meals_found]
     workouts = [Workout(workout[2], workout[3], WorkoutType(workout[4]), workout[0]) for workout in workouts_found]
-    sleeps = [SleepSession(parse_datetime(sleep[2]), parse_datetime(sleep[3]),SleepQuality([4]), sleep[5], sleep[0])
+    sleeps = [SleepSession(parse_datetime(sleep[2]), parse_datetime(sleep[3]),SleepQuality(sleep[4]), sleep[5], sleep[0])
               for sleep in sleeps_found]
 
     # assign lists to Day object
@@ -176,7 +176,7 @@ def get_day_range(start_date:str, end_date:str) -> list:
             dict_of_days[sleep_date] = Day(sleep_date)
         # add sleep to day object
         dict_of_days[sleep_date].add_sleep_session(SleepSession(
-            parse_datetime(sleep[2]), parse_datetime(sleep[3]),SleepQuality([4]), sleep[5], sleep[0]))
+            parse_datetime(sleep[2]), parse_datetime(sleep[3]),SleepQuality(sleep[4]), sleep[5], sleep[0]))
 
     # return list of dictionary values
     return list(dict_of_days.values())
@@ -187,7 +187,7 @@ def parse_date(date_str:str) -> date:
 
 def parse_datetime(datetime_text:str) -> datetime:
     # parses string into datetime object
-    return datetime.strptime(datetime_text, "%Y-%m-%d %H:%M:%S.%f")
+    return datetime.strptime(datetime_text, "%Y-%m-%d %H:%M:%S")
 
 def update_meal(meal:Meal) -> bool:
     # update meals table with modified attributes, returns true if successful
