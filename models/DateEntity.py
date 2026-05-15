@@ -96,7 +96,7 @@ class Day:
         # return average sleep quality rating
         total = 0
 
-        # avoid dividing by zero
+        # avoid dividing by zero error
         if len(self.sleep_sessions) == 0:
             return None
 

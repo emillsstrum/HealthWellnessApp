@@ -201,8 +201,9 @@ def update_meal(meal:Meal) -> bool:
 
         conn.commit()
         return cursor.rowcount == 1 # returns true if 1 row updated
-    except Exception:
-        conn.rollback()
+    except Exception as e:
+        # if exception, rollback
+        print(e)
         return False
     finally:
         conn.close()
@@ -219,7 +220,9 @@ def update_workout(workout:Workout) -> bool:
 
         conn.commit()
         return cursor.rowcount == 1  # returns true if 1 row updated
-    except Exception:
+    except Exception as e:
+        # if exception, rollback
+        print(e)
         conn.rollback()
         return False
     finally:
@@ -255,7 +258,9 @@ def delete_meal(meal_id:int):
         cursor.execute("DELETE FROM meals WHERE id = ?", (meal_id,))
         conn.commit()
         return cursor.rowcount == 1
-    except Exception:
+    except Exception as e:
+        # if exception, rollback
+        print(e)
         conn.rollback()
         return False
     finally:
@@ -271,7 +276,9 @@ def delete_workout(workout_id:int):
         cursor.execute("DELETE FROM workouts WHERE id = ?", (workout_id,))
         conn.commit()
         return cursor.rowcount == 1
-    except Exception:
+    except Exception as e:
+        # if exception, rollback
+        print(e)
         conn.rollback()
         return False
     finally:
@@ -287,7 +294,9 @@ def delete_sleep_session(ss_id:int):
         cursor.execute("DELETE FROM sleep_sessions WHERE id = ?", (ss_id,))
         conn.commit()
         return cursor.rowcount == 1
-    except Exception:
+    except Exception as e:
+        # if exception, rollback
+        print(e)
         conn.rollback()
         return False
     finally:

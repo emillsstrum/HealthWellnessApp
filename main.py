@@ -11,7 +11,7 @@
 from models.SleepEntity import SleepQuality, SleepSession
 # This is the UI for the Health and Wellness system
 
-# Resources used: lectures, reading
+# Resources used: lectures, reading, docs.python.org, w3schools.com
 
 from utils.input_util import *
 #import services.health_data as db
@@ -98,6 +98,7 @@ def add_sleep():
         return
 
     # get sleep quality and notes
+    print()
     quality = get_sleep_quality()
     notes = input("\nEnter notes on the sleep: ")
 
@@ -170,7 +171,7 @@ def modify_attribute(calorie_entity:str):
                                   1, len(current_list)+1)
         # exit if user chooses to exit meal modification
         if choice == len(current_list)+1:
-            print("Exiting Modify Meal...")
+            print(f"\nExiting Modify {calorie_entity}...")
             return
 
         # otherwise modify attribute
@@ -189,7 +190,6 @@ def modify_attribute(calorie_entity:str):
             print(f"4. Exit Current {calorie_entity} Modification")
             # get input for what attribute to modify
             mod_choice = prompt_int_range("Modify Attribute: ", 1, 4)
-            print()
 
             # modify based on user input
             if mod_choice == 1:
@@ -211,7 +211,7 @@ def modify_attribute(calorie_entity:str):
                     db.update_meal(item_to_modify)
                 elif calorie_entity == "Workout":
                     db.update_workout(item_to_modify)
-                print(f"Exiting Current {calorie_entity} Modification...")
+                print(f"\nExiting Current {calorie_entity} Modification...")
 
             # print updated meal/workout data
             print()
@@ -245,7 +245,7 @@ def modify_sleep_attribute():
                                   1, len(current_list)+1)
         # exit if user chooses to exit modification
         if choice == len(current_list)+1:
-            print("Exiting Modify Sleep...")
+            print("\nExiting Modify Sleep...")
             return
 
         # otherwise modify attribute
@@ -316,7 +316,7 @@ def modify_sleep_attribute():
             elif mod_choice == 5:
                 # call update function on exit
                 db.update_sleep_session(item_to_modify)
-                print("Exiting Current Sleep Modification...")
+                print("\nExiting Current Sleep Modification...")
 
             # print updated sleep session data
             print()
@@ -354,7 +354,7 @@ def delete_entry(entity:str):
                                   1, len(current_list) + 1)
         # exit if user chooses to exit meal modification
         if choice == len(current_list) + 1:
-            print(f"Exiting Delete {entity}...")
+            print(f"\nExiting Delete {entity}...")
             return
 
         # delete meal/workout/sleep from list and save object returned from pop()
@@ -474,7 +474,7 @@ def filter_by_date():
         # provide option to save out data as report
         save_report(day_list)
     elif choice == 4:
-        print("Exiting Filter by Date...")
+        print("\nExiting Filter by Date...")
         return
 
 def save_report(day_list):
@@ -495,7 +495,7 @@ def save_report(day_list):
         write_out_report(filename, report_list)
         print("\n* Saved to CSV")
     elif choice == 2:
-        print("Exiting Filter by Date...")
+        print("\nExiting Filter by Date...")
         return
 
 def load_xml():
@@ -506,10 +506,10 @@ def load_xml():
 
     # check if file exists
     if not os.path.exists(filename): # if it doesn't, print error message
-        print("Error: File not found, no data loaded.")
+        print("\nError: File not found, no data loaded.")
         return
     read_in_xml(filename) # if file exists, pass it to XML read function
-    print("File loaded successfully.")
+    print("\nFile loaded successfully.")
 
 def main():
     #db.load_test_data()

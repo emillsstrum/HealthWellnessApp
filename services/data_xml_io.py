@@ -55,10 +55,6 @@ def read_in_xml(filename:str) :
         # get date attribute of sleep element
         sleep_date = get_date(sleep.get("date"))
 
-        # if date not in health_data, add it in
-        #if get_entry(workout_date) is None:
-        #    add_day(workout_date)
-
         # get the rest of the workout data
         start_time = get_datetime(sleep.find("start_time").text)
         end_time = get_datetime(sleep.find("end_time").text)
